@@ -1,0 +1,4 @@
+/public/client/node_modules
+/public/client/bower_components
+/public/client/package-lock.json
+/public/client/download_components
