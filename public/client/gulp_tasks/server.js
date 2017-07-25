@@ -9,10 +9,13 @@ var config = require( './config' );
 
 console.log( config.notify.update( '\n----------------- Server started at -----------------------\n' ) );
 gulp.task('server', connect.server({
-  root: ['../build'],
-  port: 3000,
-  livereload: true,
-  open: {
-    browser: 'google-chrome'
-  }
+	root: ['../build'],
+	port: 5000,
+	livereload: {
+		enable: true,
+		port: 35000
+	},
+	open: {
+		browser: 'google-chrome'
+	}
 }));
