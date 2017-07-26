@@ -44,8 +44,8 @@ var config = function() {
         root: '../build',
         css: '../build/css',
         js: '../build/js',
-        images: '../build/assets/images',
-        fonts: '../build/assets/fonts'
+        images: '../build/assets/images/',
+        fonts: '../build/assets/fonts/'
     };
 
     //Server Configuration
