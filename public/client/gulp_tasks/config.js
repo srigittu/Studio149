@@ -45,13 +45,7 @@ var config = function() {
         css: '../build/css',
         js: '../build/js',
         images: '../build/assets/images/',
-        fonts: '../build/assets/fonts/'/*,
-        compiled: {
-            style: './build/css/style.css',
-            libraries: './build/js/libraries.js',
-            application: './build/js/application.js',
-            views: './build/js/views.js'
-        }*/
+        fonts: '../build/assets/fonts/'
     };
 
     //Server Configuration
