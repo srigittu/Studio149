@@ -22,7 +22,7 @@ gulp.task( 'compile:sass', function() {
 gulp.task( 'compile:styles', ['compile:sass'], function() {
 	console.log( config.notify.update( '\n--------------------------- Running CSS tasks --------------------------\n' ) );
 	return gulp.src( config.source.css )
-				.pipe(concat('style.css'))
+				.pipe(concat('../build/css/style.css'))
 				.pipe(gulp.dest(config.build.css));
 } );
 

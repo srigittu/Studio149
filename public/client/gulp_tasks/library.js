@@ -7,7 +7,7 @@ var gulp = require( 'gulp' ),
 
 // TASKS
 gulp.task( 'install:bower', function( cb ) {
-	console.log( config.notify.update( '\n------------------------- Installing Bower Components --------------------------\n' ) );
+	console.log( config.notify.update( '\n--------------------- Installing Bower Components ----------------------\n' ) );
 	bower.commands.install( [], {
 			save: true
 		}, {} )
