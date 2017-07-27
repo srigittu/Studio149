@@ -12,13 +12,13 @@ gulp.task( 'build', function() {
 	console.log( config.notify.update( '\n----------------- Build Development Mode  ---------------------------\n' ) );
 	runSequence(
 		'clean',
-		/*'download:ext-libs',
 		'compile:scripts',
-		'dev-inject',*/
+		'compile:ext-libs',
 		'compile:styles',
 		'compile:libs',
 		'compile:views',
 		'compile:assets',
+		'dev-inject',
 		'server'
 		// 'watch'
 	);

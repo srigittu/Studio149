@@ -15,9 +15,9 @@ gulp.task( 'compile:views', function() {
 		.pipe( htmlmin( {
 			collapseWhitespace: true
 		} ) )
-		.pipe( html2js( 'views.js', {
+		.pipe( html2js( 'templates.js', {
 			adapter: 'angular',
-			base: 'views',
+			base: 'templates',
 			name: 'app'
 		} ) )
 		.pipe( gulp.dest( config.build.js ) );

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-	<title>Studio149</title>
-    <link rel="shortcut icon" href="/assets/images/favicon.png"/>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+    <meta charset="utf-8">
+    <title>Studio149</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- JS -->
+    <script src="/js/libraries.js"></script>
+    <script src="/js/application.js"></script>
+    <script src="/js/templates.js"></script>
+    
 </head>
 <body>
-	<h1>Studio 149</h1>
-	<!-- Render Main View -->
-    <ui-view></ui-view>
-    <!-- Complied Application Scripts -->
-    <script src="/js/bower.js"></script>
-    <script src="/js/application.js"></script>
-    <script src="/js/views.js"></script>
+<!-- views will be injected here -->
+<div class="container">
+    <div ui-view></div>
+</div>
 </body>
 </html>

@@ -11,7 +11,7 @@ var config = require( './config' );
 
 
 //gulp scripts task which compress all application js files
-gulp.task( 'compile:scripts', [ 'jshint' ], function() {
+gulp.task( 'compile:scripts', function() {
 	console.log( config.notify.update( '\n-------------------- Running SCRIPT tasks ------------------------\n' ) );
 	return gulp.src( [ config.source.js+'/*.js', config.source.js+'/**/*.js' ] )
 		.pipe( concat( 'application.js' ) )

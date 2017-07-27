@@ -5,13 +5,14 @@
 'use strict';
 var gulp = require( 'gulp' );
 var download = require("gulp-download");
+var concat = require("gulp-concat");
 var config = require( './config' );
 
 //gulp scripts task to download external application files
 gulp.task( 'download:ext-libs', function() {
 	console.log( config.notify.update( '\n----------------------- Downloading external files ---------------------\n' ) );
-	download(config.download_url)
-		.pipe(gulp.dest(config.download_libs));
+	download(config.source.download_urls)
+		.pipe(gulp.dest(config.source.download));
 });
 
 //gulp scripts task which compress and hint all application js files

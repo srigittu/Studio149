@@ -10,6 +10,6 @@ var config = require( './config' );
  
 gulp.task('clean', function () {
 	console.log( config.notify.update( '\n----------------------- Clean:Build Folder ---------------------------\n' ) );
-    return gulp.src(config.build.root)
+    return gulp.src([config.build.root, './download_components'])
         .pipe(clean({force: true}));
 });

@@ -13,7 +13,7 @@ gulp.task('server', connect.server({
 	port: 5000,
 	livereload: {
 		enable: true,
-		port: 35000
+		port: 35729
 	},
 	open: {
 		browser: 'google-chrome'

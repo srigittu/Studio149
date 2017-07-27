@@ -22,9 +22,9 @@ var config = function() {
         images: 'app/assets/images',
         fonts: 'app/assets/fonts',
         bower: './bower_components',
-        download_libs: './download_components',
-        download_url: [
-            ''
+        download: './download_components',
+        download_urls: [
+            'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider.min.js'
         ],
         libs: [
             'bower_components/angular/angular.min.js',
@@ -34,7 +34,7 @@ var config = function() {
             'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ],
         ext_libs: [
-            ''
+            'download_components/jquery.flexslider-min.js'
         ],
         zip: './zip'
     };
@@ -45,13 +45,7 @@ var config = function() {
         css: '../build/css',
         js: '../build/js',
         images: '../build/assets/images/',
-        fonts: '../build/assets/fonts/'/*,
-        compiled: {
-            style: './build/css/style.css',
-            libraries: './build/js/libraries.js',
-            application: './build/js/application.js',
-            views: './build/js/views.js'
-        }*/
+        fonts: '../build/assets/fonts/'
     };
 
     //Server Configuration
