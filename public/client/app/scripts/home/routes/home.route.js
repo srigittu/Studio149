@@ -26,6 +26,11 @@
 						url: '/home',
 						templateUrl: '../app/scripts/home/views/home.html',
 						controller: 'UserController as userCtrl'
+					} )
+					.state( 'product', {
+						url: '/product',
+						templateUrl: '../app/scripts/home/views/product.html',
+						controller: 'UserController as userCtrl'
 					} );
 			}
 		]
