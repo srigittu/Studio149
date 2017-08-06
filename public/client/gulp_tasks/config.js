@@ -33,9 +33,6 @@ var config = function() {
             'bower_components/jquery/dist/jquery.min.js',
             'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ],
-        ext_libs: [
-            'download_components/jquery.flexslider-min.js'
-        ],
         zip: './zip'
     };
 
