@@ -1,5 +1,17 @@
+/node_modules
 /public/build
 /public/client/node_modules
 /public/client/bower_components
 /public/client/package-lock.json
 /public/client/download_components
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/.idea
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
