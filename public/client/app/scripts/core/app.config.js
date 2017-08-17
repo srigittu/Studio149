@@ -24,6 +24,11 @@
 					if ( request.url.indexOf( config.APP_API_URL_INDEX ) >= 0 ) {
 						request.url = config.APP_API_DOMAIN + request.url;
 					}
+					request.headers = {
+						'apitoken': '#12345abcde',
+						'userid': '14',
+						'Content-Type': 'application/json; charset=UTF-8'
+					};
 					$rootScope.isLoading = true;
 					return request || $q.when( request );
 				},

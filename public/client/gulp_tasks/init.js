@@ -15,9 +15,9 @@ gulp.task( 'build', function() {
 		'compile:ext-libs',
 		'compile:libs',
 		'compile:scripts',
-		'compile:assets',
-		'compile:styles',
 		'compile:views',
+		'compile:styles',
+		'compile:assets',
 		'dev-inject',
 		'server',
 		'watch'

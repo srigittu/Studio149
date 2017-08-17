@@ -1,5 +1,10 @@
 <?php
-
+header("Access-Control-Allow-Credentials: true");
+header("Access-Control-Allow-Headers: origin, x-requested-with, content-type, apitoken, userid");
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET,POST,PUT,DELETE");
+header("Access-Control-Request-Method: *");
+header("Connection: keep-alive");
 /**
  * Laravel - A PHP Framework For Web Artisans
  *

@@ -14,3 +14,22 @@
 Route::get('/', function () {
     return view('index');
 });
+
+
+// API ROUTES ==================================  
+Route::group(array('prefix' => 'api/user'), function() {
+
+    Route::get('/', 'UserController@index');
+    Route::post('login', 'UserController@login');
+    Route::post('register', 'UserController@register');
+    Route::put('/{id}', 'UserController@update');
+    Route::delete('/{id}', 'UserController@delete');
+
+});
+
+// CATCH ALL ROUTE =============================  
+// all routes that are not home or api will be redirected to the frontend 
+// this allows angular to route them 
+// App::missing(function($exception) { 
+//     return View::make('index'); 
+// });
