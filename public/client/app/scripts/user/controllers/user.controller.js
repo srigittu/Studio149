@@ -14,21 +14,61 @@
      * User controller contains all the models related to user module
      * @author Tungstn Developers
      */
-    function UserController($scope, $state, UserService) {
+    function UserController($state, $stateParams, UserService) {
         var vm = this;
         vm.user = {};
 
-        vm.login = function (loginData) {
-            UserService.login(loginData);
+        vm.register = function () {
+            var promise = UserService.register(vm.user);
+            promise.then( function( response ) {
+                if ( response.data.status !== 'error' ) {
+                    $state.go('success_register');
+                } else {
+                    $state.go('login');
+                }
+            } );
         }
 
-        vm.register = function () {
-            console.log(vm.user);
-            var registerData = vm.user;
-            var promise = UserService.register(registerData);
+        vm.login = function () {
+            var promise = UserService.login(vm.user);
             promise.then( function( response ) {
                 if ( response.data.status !== 'error' ) {
                     $state.go('home');
+                } else {
+                    $state.go('login');
+                }
+            } );
+        }
+
+        vm.logout = function () {
+            var promise = UserService.logout(vm.user.id);
+            promise.then( function( response ) {
+                if ( response.data.status !== 'error' ) {
+                    $state.go('login');
+                } else {
+                    $state.go('login');
+                }
+            } );
+        }
+
+        vm.forgotPassword = function () {
+            var promise = UserService.forgotPassword(vm.user);
+            promise.then( function( response ) {
+                if ( response.data.status !== 'error' ) {
+                    $state.go('login');
+                } else {
+                    $state.go('login');
+                }
+            } );
+        }
+
+        vm.resetPassword = function () {
+            vm.user.id = $stateParams.id;
+            vm.user.token = $stateParams.token;
+            var promise = UserService.resetPassword(vm.user);
+            promise.then( function( response ) {
+                if ( response.data.status !== 'error' ) {
+                    $state.go('login');
                 } else {
                     $state.go('login');
                 }
@@ -48,5 +88,5 @@
      * All the dependency injections for user module
      * @author Tungstn Developers
      */
-    UserController.$inject = ['$scope', '$state', 'UserService'];
+    UserController.$inject = ['$state', '$stateParams', 'UserService'];
 } )();

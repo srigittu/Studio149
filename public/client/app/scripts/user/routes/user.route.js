@@ -13,7 +13,7 @@
 		]
 	)
 
-	//App configurations for state and url proividers
+	//App configurations for state and url providers
 	.config(
 		[ '$stateProvider', '$urlRouterProvider',
 			function( $stateProvider, $urlRouterProvider ) {
@@ -26,6 +26,37 @@
 					.state( 'register', {
 						url: '/register',
 						templateUrl: '../app/scripts/user/views/register.html',
+						controller: 'UserController as userCtrl'
+					} )
+					.state( 'success_register', {
+						url: '/sucess-register',
+						templateUrl: '../app/scripts/user/views/success-register.html',
+						controller: 'UserController as userCtrl'
+					} )
+					.state( 'verify_email', {
+						url: '/verify-email/:id/:token',
+						onEnter: function($state, $stateParams, UserService) {
+								var promise = UserService.verifyEmail($stateParams.id, $stateParams.token);
+								promise.then( function( response ) {
+									if ( response.data.status !== 'error' ) {
+										$state.go('login');
+									} else {
+										$state.go('login');
+									}
+								} )
+								.catch( function() {
+									// logger.showMessage( 'error', 'Service unavailable.' );
+								} );
+						}
+					} )
+					.state( 'forgot_password', {
+						url: '/forgot-password',
+						templateUrl: '../app/scripts/user/views/forgot-password.html',
+						controller: 'UserController as userCtrl'
+					} )
+					.state( 'reset_password', {
+						url: '/reset-password/:id/:token',
+						templateUrl: '../app/scripts/user/views/reset-password.html',
 						controller: 'UserController as userCtrl'
 					} );
 			}

@@ -19,11 +19,17 @@ Route::get('/', function () {
 // API ROUTES ==================================  
 Route::group(array('prefix' => 'api/user'), function() {
 
-    Route::get('/', 'UserController@index');
     Route::post('login', 'UserController@login');
     Route::post('register', 'UserController@register');
-    Route::put('/{id}', 'UserController@update');
-    Route::delete('/{id}', 'UserController@delete');
+    Route::post('verify-email/{id}/{token}', 'UserController@verifyEmail');
+    Route::post('forgot-password', 'UserController@forgotPassword');
+    Route::post('reset-password', 'UserController@resetPassword');
+
+    Route::group(array('prefix' => '', 'middleware' => 'userAuth'), function() {
+	    Route::get('/', 'UserController@index');
+	    Route::put('/{id}', 'UserController@update');
+	    Route::post('logout/{id}', 'UserController@logout');
+	});
 
 });
 

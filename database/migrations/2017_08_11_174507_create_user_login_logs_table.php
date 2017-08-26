@@ -14,11 +14,10 @@ class CreateUserLoginLogsTable extends Migration
     public function up()
     {
         Schema::create('user_login_logs', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('token', 100);
             $table->dateTime('logged_on');
-            $table->dateTime('logged_out');
+            $table->dateTime('logged_out')->nullable();
             $table->tinyInteger('status')->default(1)->comment('1-Active, 2-Inactive');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

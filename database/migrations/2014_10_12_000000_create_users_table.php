@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();
-            $table->tinyInteger('status')->default(1)->comment('1-Active/Email verified, 2-Inactive/Email not verified');
+            $table->tinyInteger('status')->default(2)->comment('1-Active/Email verified, 2-Inactive/Email not verified');
             $table->foreign('creator_id')->references('id')->on('users')->onDelete('set null');
         });
     }
