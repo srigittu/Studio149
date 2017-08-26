@@ -29,7 +29,7 @@
 						controller: 'UserController as userCtrl'
 					} )
 					.state( 'success_register', {
-						url: '/sucess-register',
+						url: '/success-register',
 						templateUrl: '../app/scripts/user/views/success-register.html',
 						controller: 'UserController as userCtrl'
 					} )

@@ -18,6 +18,8 @@ App Studio149 Core
 	angular.module( 'app', [
 		'ui.router',
 		'ngAnimate',
+		'app.header',
+		'app.footer',
 		'app.admin',
 		'app.user',
 		'app.home'
