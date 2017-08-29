@@ -21,7 +21,34 @@
 					.state( 'login', {
 						url: '/login',
 						templateUrl: '../app/scripts/user/views/login.html',
-						controller: 'UserController as userCtrl'
+						controller: 'UserController as userCtrl',
+						onEnter: function($state, UserService) {
+							var user = UserService.getLocalUser();
+							if (user) {
+								$state.go('home');
+							}
+						}
+					} )
+					.state( 'logout', {
+						url: '/logout',
+						templateUrl: '../app/scripts/user/views/login.html',
+						controller: 'UserController as userCtrl',
+						onEnter: function($state, UserService) {
+							var user = UserService.getLocalUser();
+							if (user) {
+								var promise = UserService.logout(user.id);
+					            promise.then( function( response ) {
+					                if ( response.data.status !== 'error' ) {
+					                	UserService.unsetLocalUser();
+					                    $state.go('login');
+					                } else {
+					                    $state.go('login');
+					                }
+					            } );
+							} else {
+								$state.go('login');
+							}
+						}
 					} )
 					.state( 'register', {
 						url: '/register',

@@ -17,20 +17,35 @@ Route::get('/', function () {
 
 
 // API ROUTES ==================================  
-Route::group(array('prefix' => 'api/user'), function() {
+Route::group(array('prefix' => 'api'), function() {
 
-    Route::post('login', 'UserController@login');
-    Route::post('register', 'UserController@register');
-    Route::post('verify-email/{id}/{token}', 'UserController@verifyEmail');
-    Route::post('forgot-password', 'UserController@forgotPassword');
-    Route::post('reset-password', 'UserController@resetPassword');
+    //API for UserController
+    Route::group(array('prefix' => 'user'), function() {
+        
+        Route::post('login', 'UserController@login');
+        Route::post('register', 'UserController@register');
+        Route::post('verify-email/{id}/{token}', 'UserController@verifyEmail');
+        Route::post('forgot-password', 'UserController@forgotPassword');
+        Route::post('reset-password', 'UserController@resetPassword');
 
-    Route::group(array('prefix' => '', 'middleware' => 'userAuth'), function() {
-	    Route::get('/', 'UserController@index');
-	    Route::put('/{id}', 'UserController@update');
-	    Route::post('logout/{id}', 'UserController@logout');
-	});
+        Route::group(array('prefix' => '', 'middleware' => 'userAuth'), function() {
+    	    Route::get('/', 'UserController@index');
+    	    Route::put('/{id}', 'UserController@update');
+    	    Route::post('logout/{id}', 'UserController@logout');
+    	});
+    });
 
+    //API for ProductController
+    Route::group(array('prefix' => 'product'), function() {
+        
+        Route::get('/', 'ProductController@index');
+
+        Route::group(array('prefix' => ''/*, 'middleware' => 'userAuth'*/), function() {
+            Route::post('/', 'ProductController@store');
+            Route::put('/{id}', 'ProductController@update');
+            Route::delete('/{id}', 'ProductController@destroy');
+        });
+    });
 });
 
 // CATCH ALL ROUTE =============================  

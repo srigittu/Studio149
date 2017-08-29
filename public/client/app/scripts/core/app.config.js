@@ -16,7 +16,7 @@
 		delete $httpProvider.defaults.headers.common[ 'X-Requested-With' ];
 		$sceDelegateProvider.resourceUrlWhitelist( [ '**' ] );
 
-		var interceptor = [ '$q', '$rootScope', '$location', function( $q, $rootScope, $location ) {
+		var interceptor = [ '$q', '$rootScope', '$location', '$localStorage', function( $q, $rootScope, $location, $localStorage ) {
 
 			return {
 				//On Request
@@ -25,10 +25,14 @@
 						request.url = config.APP_API_DOMAIN + request.url;
 					}
 					request.headers = {
-						'apitoken': '#12345abcde',
-						'userid': '14',
 						'Content-Type': 'application/json; charset=UTF-8'
 					};
+					if ($localStorage.user) {
+						request.headers = {
+							'apitoken': $localStorage.user.apitoken.token,
+							'userid': $localStorage.user.apitoken.user_id
+						};
+					}
 					$rootScope.isLoading = true;
 					return request || $q.when( request );
 				},

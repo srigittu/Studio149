@@ -107,10 +107,11 @@ class UserController extends Controller
             $userLoginLog->logged_on = $currentDate;
             $userLoginLog->save();
 
+            $user->apitoken = $userLoginLog;
+
             return response(array(
                 'status' => 'success',
-                'message' => $user,
-                'apitoken' => $userLoginLog
+                'user' => $user
                     ), 200);
         } else {
 

@@ -33,18 +33,8 @@
             var promise = UserService.login(vm.user);
             promise.then( function( response ) {
                 if ( response.data.status !== 'error' ) {
+                    vm.user = UserService.setLocalUser(response.data.user);
                     $state.go('home');
-                } else {
-                    $state.go('login');
-                }
-            } );
-        }
-
-        vm.logout = function () {
-            var promise = UserService.logout(vm.user.id);
-            promise.then( function( response ) {
-                if ( response.data.status !== 'error' ) {
-                    $state.go('login');
                 } else {
                     $state.go('login');
                 }

@@ -13,7 +13,7 @@
 	 * @module app.user
 	 * @author Tungstn Developers
 	 */
-	UserService.$inject = [ 'UserDataService' ];
+	UserService.$inject = [ '$localStorage', 'UserDataService' ];
 
 	/**
 	 * @ngdoc Service
@@ -22,8 +22,21 @@
 	 * @module app.user
 	 * @author Tungstn Developers
 	 */
-	function UserService( UserDataService ) {
+	function UserService( $localStorage, UserDataService ) {
 		var _self = this;
+
+		_self.getLocalUser = function() {
+			return $localStorage.user;
+		};
+
+		_self.setLocalUser = function(user) {
+			$localStorage.user = user; 
+			return $localStorage.user;
+		};
+
+		_self.unsetLocalUser = function() {
+			delete $localStorage.user;
+		};
 
 		_self.register = function(registerData) {
 			return UserDataService.register(registerData);
