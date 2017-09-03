@@ -9,72 +9,16 @@
         <div class="latest">
             <div class="context-text latest-text">Latest</div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
+        <div class="col-md-4 col-sm-4 col-xs-6 product-card" ng-repeat="product in productCtrl.products">
             <div class="col-md-12 col-sm-12 product-shadow">
                 <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-1.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
+                    <img class="card-img-top img-responsive" src="assets/images/{{ product.image }}" alt="category">
+                    <a href="#" class="category-title product-title btn card-text">{{ product.name }}
                     <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
+                    <p class="prod-desc">{{ product.description }}</p>
                     </a>
                 </div>
             </div>
-		</div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
-            <div class="col-md-12 col-sm-12 product-shadow">
-                <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-2.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
-                    <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
-                    </a>
-                    
-                </div>
-			</div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
-            <div class="col-md-12 col-sm-12 product-shadow">
-                <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-3.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
-                    <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
-                    </a>
-                </div>   
-			</div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
-            <div class="col-md-12 col-sm-12 product-shadow">
-                <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-1.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
-                    <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
-                    </a>
-                </div>   
-			</div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
-            <div class="col-md-12 col-sm-12 product-shadow">
-                <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-2.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
-                    <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
-                    </a>
-                </div>   
-			</div>
-        </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card">
-            <div class="col-md-12 col-sm-12 product-shadow">
-                <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-3.jpg" alt="category">
-                    <a href="#" class="category-title product-title btn card-text">Yellow Lehenga with embroidery
-                    <hr>
-                    <p class="prod-desc">try that out to test your elegance</p>
-                    </a>
-                </div>   
-			</div>
 		</div>
     </div>
 </div>
