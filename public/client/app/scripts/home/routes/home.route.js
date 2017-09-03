@@ -27,9 +27,9 @@
 						templateUrl: '../app/scripts/home/views/home.html',
 						controller: 'HomeController as homeCtrl'
 					} )
-					.state( 'product', {
-						url: '/product',
-						templateUrl: '../app/scripts/home/views/product.html',
+					.state( 'studio', {
+						url: '/studio',
+						templateUrl: '../app/scripts/home/views/studio.html',
 						controller: 'HomeController as homeCtrl'
 					} );
 			}

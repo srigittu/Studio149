@@ -11,7 +11,7 @@
 	 * @description
 	 * Dashboard module service injection
 	 * @module app.dashboard
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	HomeDataService.$inject = [ '$http' ];
 
@@ -20,7 +20,7 @@
 	 * @name HomeDataService
 	 * @description  service http request and response handler
 	 * @module app.dashboard
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	function HomeDataService( $http ) {
 		return {

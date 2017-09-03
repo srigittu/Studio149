@@ -23,7 +23,8 @@ App Studio149 Core
 		'app.footer',
 		'app.admin',
 		'app.user',
-		'app.home'
+		'app.home',
+		'app.product'
 	] );
 
 } )();
