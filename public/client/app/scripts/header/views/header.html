@@ -17,7 +17,15 @@
       <ul class="nav navbar-nav">
         <li><a ui-sref="home">Home <span class="sr-only">(current)</span></a></li>
         <li><a ui-sref="studio">The Studio</a></li>
-        <li><a ui-sref="products">Store</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+          Store<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu store-dropdown">
+            <li><a ui-sref="products({categoryName: 'bridal'})">Bridal</a></li>
+            <li><a ui-sref="products({categoryName: 'pret'})">Pret</a></li>
+            <li><a ui-sref="products({categoryName: 'fusion'})">Fusion</a></li>
+            <li><a ui-sref="products({categoryName: 'bridal'})">On Sale</a></li>
+          </ul>
+        </li>
         <li><a ui-sref="product-detail">Press</a></li>
         <li><a href="#">Contact</a></li>
       </ul>

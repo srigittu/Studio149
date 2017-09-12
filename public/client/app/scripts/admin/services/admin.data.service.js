@@ -28,7 +28,14 @@
 				return $http( {
 					method: 'GET',
 					url: '/api/admin'
-				} );
+				});
+			},
+			addProduct: function(product) {
+			    return $http({
+                    method: 'POST',
+					url: 'admin/add-product',
+					data: product
+				});
 			}
 		};
 	}

@@ -26,6 +26,11 @@
 						url: '/admin',
 						templateUrl: '../app/scripts/admin/views/admin.html',
 						controller: 'AdminController as adminCtrl'
+					} )
+					.state( 'add_product', {
+						url: '/admin/add-product',
+						templateUrl: '../app/scripts/admin/views/add-product.html',
+						controller: 'AdminController as adminCtrl'
 					} );
 			}
 		]

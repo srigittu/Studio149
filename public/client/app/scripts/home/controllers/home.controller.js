@@ -16,7 +16,6 @@
      */
     function HomeController($scope, HomeService) {
         var vm = this;
-        console.log('gud after');
     }
 
     /**

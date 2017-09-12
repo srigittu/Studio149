@@ -17,7 +17,9 @@ App Studio149 Core
 	 */
 	angular.module( 'app', [
 		'ui.router',
+		'ui.bootstrap',
 		'ngAnimate',
+		'toastr',
 		'ngStorage',
 		'app.header',
 		'app.footer',

@@ -34,6 +34,10 @@
 		_self.getAdminHome = function() {
 			return AdminDataService.getAdminHome();
 		};
+
+		_self.addProduct = function(product) {
+			return AdminDataService.addProduct(product);
+		}
 	}
 
 } )();

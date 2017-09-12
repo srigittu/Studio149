@@ -31,9 +31,17 @@
 		 * @desc Get product details
 		 * @return {object} product
 		 */
-		_self.getProducts = function() {
-			return ProductDataService.getProduct();
+		_self.getProductsByCategoryType = function(categoryType) {
+			return ProductDataService.getProductsByCategoryType(categoryType);
 		};
+
+		_self.getProductDetailById = function(productId) {
+			return ProductDataService.getProductDetailById(productId);
+		}
+
+		_self.submitUserPaymentDetails = function(userInfo) {
+			return ProductDataService.submitUserPaymentDetails(userInfo);
+		}
 	}
 
 } )();

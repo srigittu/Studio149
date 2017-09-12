@@ -13,7 +13,9 @@ var config = function() {
         root: 'app',
         index: 'app/index.html',
         css: [
-            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'bower_components/angular-toastr/dist/angular-toastr.min.css',
+            'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
         ],
         scss: [
             'app/styles/scss/*.scss'
@@ -32,6 +34,9 @@ var config = function() {
             'bower_components/angular-ui-router/release/angular-ui-router.min.js',
             'bower_components/ngstorage/ngStorage.min.js',
             'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/angular-toastr/dist/angular-toastr.min.js',
+            'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
+            'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'bower_components/bootstrap/dist/js/bootstrap.min.js'
         ],
         zip: './zip'

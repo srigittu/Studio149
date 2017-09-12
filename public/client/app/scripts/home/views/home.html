@@ -1,7 +1,7 @@
 <header-section></header-section>
 <div class="container-fluid gif-section">
 	<div class="col-md-12 col-sm-12 col-xs-12 home-section">
-		<img src="assets/images/studio-1.gif" class="img-responsive">
+		<img src="assets/images/studio-149.gif" class="img-responsive">
 		<div class="section-text">
 			<p class="cursive-font">&quot;Fashion is architecture - it's a matter of proportions&quot;</p>
 			<p class="cursive-font">- Coco Chanel </p>
@@ -12,37 +12,39 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid main-section">
+<div class="container-fluid">
 	<div class="col-md-12 col-sm-12 home-section">
 		<div class="header-text">Collections</div>
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<div class="card">
 				<img class="card-img-top img-responsive" src="assets/images/bridal.jpg" alt="category">
-				<a href="#" class="category-title btn card-text">Bridal</a>
+				<a ui-sref="products({categoryName: 'bridal'})" class="category-title btn card-text">Bridal</a>
 			</div>
 			
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-6">
 			<div class="card">
 				<img class="card-img-top img-responsive" src="assets/images/fusion.jpg" alt="category">
-				<a href="#" class="category-title btn card-text">Fusion</a>
+				<a ui-sref="products({categoryName: 'fusion'})" class="category-title btn card-text">Fusion</a>
 			</div>
 			
 		</div>
 		<div class="col-md-4 col-sm-4 col-xs-12">
 			<div class="card">
 				<img class="card-img-top img-responsive" src="assets/images/pret.jpg" alt="category">
-				<a href="#" class="category-title btn card-text">Pret</a>
+				<a ui-sref="products({categoryName: 'pret'})" class="category-title btn card-text">Pret</a>
 			</div>
 		</div>
 	</div>
 	<div class="col-md-12 col-sm-12 col-xs-12 home-section">
 		<img src="assets/images/swathi-special.jpg" class="img-responsive">
 	</div>
-	<a href="#" class="category-title btn specials">Studio 149 Exclusive</a>
+	<div class="col-md-12 col-sm-12 col-xs-12 center-exclusive">
+	    <a href="#" class="category-title btn specials">Studio 149 Exclusive</a>
+	</div>
 	<hr>
     <div class="col-md-12 col-sm-12 home-section">
-		<div class="header-text">New Arrivals</div>
+	    <div class="header-text">New Arrivals</div>
 		<div id="arrivals-carousel" class="carousel slide" data-interval="false">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
