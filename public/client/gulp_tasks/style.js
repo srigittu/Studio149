@@ -21,6 +21,7 @@ gulp.task( 'compile:sass', function() {
 // gulp styles task which compress all css into single css
 gulp.task( 'compile:styles', ['compile:sass'], function() {
 	console.log( config.notify.update( '\n--------------------------- Running CSS tasks --------------------------\n' ) );
+	config.source.css.push(config.build.css+'/*.*');
 	return gulp.src( config.source.css )
 				.pipe(concat('style.css'))
 				.pipe(gulp.dest(config.build.css));

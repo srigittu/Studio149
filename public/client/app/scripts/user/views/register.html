@@ -1,0 +1,48 @@
+<div class="col-md-6 user-form">
+     <div class="title">
+        <h2>Register</h2>
+    </div> 
+    <div class="col-md-4 section">
+        <img src="assets/images/studio149-2.jpg" class="img-responsive">
+    </div>
+    <form class="col-md-4 section" name="registerForm" ng-submit="userCtrl.register(registerForm)" novalidate>
+        <div class="form-group" ng-class="{ 'has-error': registerForm.firstname.$dirty && registerForm.firstname.$error.required }">
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" id="firstname" class="form-control" ng-model="userCtrl.user.firstname" required />
+            <span ng-show="registerForm.firstname.$dirty && registerForm.firstname.$error.required" class="help-block">First name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': registerForm.lastname.$dirty && registerForm.lastname.$error.required }">
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" id="Text1" class="form-control" ng-model="userCtrl.user.lastname" required />
+            <span ng-show="registerForm.lastname.$dirty && registerForm.lastname.$error.required" class="help-block">Last name is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': registerForm.email.$dirty && registerForm.email.$error.required }">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control" ng-model="userCtrl.user.email" required />
+            <span ng-show="registerForm.email.$dirty && registerForm.email.$error.required" class="help-block">Email is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': registerForm.password.$dirty && registerForm.password.$error.required }">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" ng-model="userCtrl.user.password" required />
+            <span ng-show="registerForm.password.$dirty && registerForm.password.$error.required" class="help-block">Password is required</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': registerForm.passwordConfirm.$dirty && registerForm.passwordConfirm.$error.required  || registerForm.passwordConfirm.$error.matchPassword && registerForm.passwordConfirm.$touched }">
+            <label for="passwordConfirm">Confirm Password</label>
+            <input type="password" name="passwordConfirm" id="passwordConfirm" class="form-control" ng-model="userCtrl.user.confirmPassword"
+                match-password="password" required/>
+            <span ng-show="registerForm.passwordConfirm.$dirty && registerForm.passwordConfirm.$error.required" class="help-block">Password is required</span>
+            <span ng-show="registerForm.passwordConfirm.$error.matchPassword && registerForm.passwordConfirm.$touched" class="help-block">Password doesn't match</span>
+        </div>
+        <div class="form-actions">
+            <div class="text-center">
+                <button type="submit" ng-disabled="registerForm.$invalid || isLoading" class="btn btn-primary">Register</button>
+                <img ng-if="isLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                />
+            </div>
+            <div class="text-center">
+                <a href="#/login" class="btn btn-link"><small>Already have an account? Login</small></a>
+            </div>
+        </div>
+    </form>
+</div>
+

@@ -16,7 +16,7 @@ var injectOpt = {
 gulp.task( 'dev-inject', function() {
 	console.log( config.notify.update( '\n------------------------ Running Injector tasks -------------------\n' ) );
 	gulp.src( 'app/index.html' )
-		.pipe( inject( gulp.src( config.build.js + '/*.js', {
+		.pipe( inject( gulp.src( [config.build.js + '/libraries.js', config.build.js + '/application.js', config.build.js + '/templates.js'], {
 			read: false
 		} ), injectOpt ) )
 		.pipe( inject( gulp.src( config.build.css + '/*.css', {

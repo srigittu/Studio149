@@ -1,0 +1,27 @@
+<header-section></header-section>
+<div class="container-fluid main-img" ng-init="productCtrl.init()" ng-cloak>
+    <div class="category-intro-img col-md-12 col-sm-12 col-xs-12">
+    </div>
+</div>
+<div class="container-fluid products-section">
+     <!--  -->
+    <div class="col-md-12 col-sm-12 col-xs-12 products-listing">
+        <div class="category-text">Bridal</div>
+        <hr>
+        <div class="latest">
+            <div class="context-text latest-text">Latest</div>
+        </div>
+        <div class="col-md-4 col-sm-4 col-xs-6 product-card" ng-repeat="product in productCtrl.products" ng-click="productCtrl.getProductDetail(product.id)">
+            <div class="col-md-12 col-sm-12 product-shadow">
+                <div class="card">
+                    <img class="card-img-top img-responsive" src="assets/images/{{ product.image }}" alt="category">
+                    <a href="#" class="category-title product-title btn card-text">{{ product.name }}
+                    <hr>
+                    <p class="prod-desc">{{ product.description }}</p>
+                    </a>
+                </div>
+            </div>
+		</div>
+    </div>
+</div>
+<footer-section></footer-section>

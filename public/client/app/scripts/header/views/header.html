@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid logo-section">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-list" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand brand-link" href="#">
+        <img alt="Brand" src="assets/images/studio3.png" class="img-responsive">
+      </a>
+    </div>
+  </div>
+  <div class="container-fluid main-section">
+    <div class="collapse navbar-collapse" id="menu-list">
+      <ul class="nav navbar-nav">
+        <li><a ui-sref="home">Home <span class="sr-only">(current)</span></a></li>
+        <li><a ui-sref="studio">The Studio</a></li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown">
+          Store<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+          <ul class="dropdown-menu store-dropdown">
+            <li><a ui-sref="products({categoryName: 'bridal'})">Bridal</a></li>
+            <li><a ui-sref="products({categoryName: 'pret'})">Pret</a></li>
+            <li><a ui-sref="products({categoryName: 'fusion'})">Fusion</a></li>
+            <li><a ui-sref="products({categoryName: 'bridal'})">On Sale</a></li>
+          </ul>
+        </li>
+        <li><a ui-sref="product-detail">Press</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In<span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

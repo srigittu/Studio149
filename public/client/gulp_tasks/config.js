@@ -13,7 +13,9 @@ var config = function() {
         root: 'app',
         index: 'app/index.html',
         css: [
-            'bower_components/bootstrap/dist/css/bootstrap.min.css'
+            'bower_components/bootstrap/dist/css/bootstrap.min.css',
+            'bower_components/angular-toastr/dist/angular-toastr.min.css',
+            'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
         ],
         scss: [
             'app/styles/scss/*.scss'
@@ -22,19 +24,20 @@ var config = function() {
         images: 'app/assets/images',
         fonts: 'app/assets/fonts',
         bower: './bower_components',
-        download_libs: './download_components',
-        download_url: [
-            ''
+        download: './download_components',
+        download_urls: [
+            'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.6.3/jquery.flexslider.min.js'
         ],
         libs: [
             'bower_components/angular/angular.min.js',
             'bower_components/angular-animate/angular-animate.min.js',
             'bower_components/angular-ui-router/release/angular-ui-router.min.js',
+            'bower_components/ngstorage/ngStorage.min.js',
             'bower_components/jquery/dist/jquery.min.js',
+            'bower_components/angular-toastr/dist/angular-toastr.min.js',
+            'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
+            'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'bower_components/bootstrap/dist/js/bootstrap.min.js'
-        ],
-        ext_libs: [
-            ''
         ],
         zip: './zip'
     };
@@ -44,8 +47,8 @@ var config = function() {
         root: '../build',
         css: '../build/css',
         js: '../build/js',
-        images: '../build/assets/images',
-        fonts: '../build/assets/fonts'
+        images: '../build/assets/images/',
+        fonts: '../build/assets/fonts/'
     };
 
     //Server Configuration

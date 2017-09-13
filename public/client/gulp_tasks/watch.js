@@ -13,7 +13,7 @@ gulp.task( 'watch', function() {
 	console.log( config.notify.update( '\n----------------------- Watching All Files --------------------------\n' ) );
 	var HTML = gulp.watch( [ 'app/*.html', 'app/**/*.html' ], [ 'compile:views' ] ),
 		JS = gulp.watch( [ 'app/*.js', 'app/scripts/**/*.js' ], [ 'compile:scripts' ] ),
-		SASS = gulp.watch( [ 'app/assets/scss/*.scss' ], [ 'compile:styles' ] ),
+		SASS = gulp.watch( [ 'app/styles/scss/*.scss' ], [ 'compile:styles' ] ),
 		BOWER = gulp.watch( [ 'bower_components/**/*.*', 'bower.json' ], [ 'compile:libs' ] );
 
 	var log = function( event ) {

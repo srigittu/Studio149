@@ -16,7 +16,7 @@ gulp.task( 'compile:fonts', function() {
 });
 
 //gulp scripts task which compress and hint all application js files
-gulp.task( 'compile:assets', function() {
+gulp.task( 'compile:assets', ['compile:fonts', 'compile:images'], function() {
 	console.log( config.notify.update( '\n------------------------- Running Assests tasks --------------------------\n' ) );
 	return gulp.src( 'app/index.html' )
 		.pipe(gulp.dest('../build/'));
