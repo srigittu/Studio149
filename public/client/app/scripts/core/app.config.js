@@ -27,6 +27,11 @@
 					request.headers = {
 						'Content-Type': 'application/json; charset=UTF-8'
 					};
+					if (request.isFile) {
+						request.headers = {
+							'Content-Type': undefined
+						};
+					}
 					if ($localStorage.user) {
 						request.headers = {
 							'apitoken': $localStorage.user.apitoken.token,

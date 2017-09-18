@@ -21,6 +21,7 @@ class CreateProductDetailsTable extends Migration
             $table->text('description')->nullable();
             $table->string('color')->nullable();
             $table->string('material')->nullable();
+            $table->string('designer')->nullable();
             $table->string('image')->nullable();
             $table->double('price', 15, 2);
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

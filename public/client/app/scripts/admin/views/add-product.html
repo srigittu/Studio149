@@ -2,17 +2,14 @@
      <div class="title">
         <h2>Register</h2>
     </div> 
-    <div class="col-md-4 section">
-        <img src="assets/images/studio149-2.jpg" class="img-responsive">
-    </div>
-    <form class="col-md-4 section" name="addProductForm" ng-submit="adminCtrl.addProduct(addProductForm)" novalidate>
+    <form class="col-md-12" name="addProductForm" ng-submit="adminCtrl.addProduct(addProductForm)" novalidate>
         <div class="form-group" ng-class="{ 'has-error': addProductForm.firstname.$dirty && addProductForm.firstname.$error.required }">
             <label for="name">Product Name</label>
             <input type="text" name="name" id="name" class="form-control" ng-model="adminCtrl.product.name" required />
             <span ng-show="addProductForm.name.$dirty && addProductForm.name.$error.required" class="help-block">First name is required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': addProductForm.description.$dirty && addProductForm.description.$error.required }">
-            <label for="description">Last name</label>
+            <label for="description">Description</label>
             <input type="text" name="description" id="description" class="form-control" ng-model="adminCtrl.product.description" required />
             <span ng-show="addProductForm.description.$dirty && addProductForm.description.$error.required" class="help-block">Last name is required</span>
         </div>
@@ -26,10 +23,10 @@
             <input type="number" name="price" id="price" class="form-control" ng-model="adminCtrl.product.price" required />
             <span ng-show="addProductForm.price.$dirty && addProductForm.price.$error.required" class="help-block">price is required</span>
         </div>
-        <div class="form-group" ng-class="{ 'has-error': addProductForm.designerName.$dirty && addProductForm.designerName.$error.required }">
-            <label for="designerName">designerName</label>
-            <input type="text" name="designerName" id="designerName" class="form-control" ng-model="adminCtrl.product.designerName" required />
-            <span ng-show="addProductForm.designerName.$dirty && addProductForm.designerName.$error.required" class="help-block">designerName is required</span>
+        <div class="form-group" ng-class="{ 'has-error': addProductForm.designer.$dirty && addProductForm.designer.$error.required }">
+            <label for="designer">designer</label>
+            <input type="text" name="designer" id="designer" class="form-control" ng-model="adminCtrl.product.designer" required />
+            <span ng-show="addProductForm.designer.$dirty && addProductForm.designer.$error.required" class="help-block">designer is required</span>
         </div>
         <div class="form-group" ng-class="{ 'has-error': addProductForm.material.$dirty && addProductForm.material.$error.required }">
             <label for="material">material</label>
@@ -46,13 +43,13 @@
             </select><br>
         </div>
         <div class="form-group">
-            <label for="image">Images</label>
-            <input type="file" name="image" id="image" multiple ng-model="adminCtrl.product.filename" /> 
+            <label for="images">Images</label>
+            <input type="file" name="images" id="images" multiple/> 
         </div>
         <div class="checkbox">
-            <label><input type="checkbox" ng-model="adminCtrl.product.size.small" value="S">Small</label>
-            <label><input type="checkbox" ng-model="adminCtrl.product.size.large" value="L">Large</label>
-            <label><input type="checkbox" ng-model="adminCtrl.product.size.medium" value="M">Medium</label>
+            <label><input type="checkbox" ng-model="adminCtrl.product.selectedSizes.S">Small</label>
+            <label><input type="checkbox" ng-model="adminCtrl.product.selectedSizes.M">Medium</label>
+            <label><input type="checkbox" ng-model="adminCtrl.product.selectedSizes.L">Large</label>
         </div>
         
         <div class="form-actions">
@@ -60,9 +57,6 @@
                 <button type="submit" ng-disabled="addProductForm.$invalid || isLoading" class="btn btn-primary">Add</button>
                 <img ng-if="isLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
                 />
-            </div>
-            <div class="text-center">
-                <a href="#/login" class="btn btn-link"><small>Already have an account? Login</small></a>
             </div>
         </div>
     </form>

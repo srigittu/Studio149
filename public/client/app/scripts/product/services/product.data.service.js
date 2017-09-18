@@ -23,52 +23,17 @@
 	 * @author Tungstn Developers
 	 */
 	function ProductDataService( $http ) {
-		// const products = [
-		// 	{ 'id': 1,
-		// 	  'name': 'Yellow Lehenga with embroidery', 
-		// 	  'image': 'product-1.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	},
-		// 	{ 'id': 2,
-		// 	  'name': 'Pink Lehenga with embroidery',
-		// 	  'image': 'product-2.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	},
-		// 	{ 'id': 3,
-		// 	  'name': 'Green Lehenga with embroidery',
-		// 	  'image': 'product-3.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	},
-		// 	{ 'id': 4,
-		// 		'name': 'Yellow Lehenga with embroidery',
-		// 	  'image': 'product-1.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	},
-		// 	{ 'id': 5,
-		// 		'name': 'Pink Lehenga with embroidery',
-		// 	  'image': 'product-2.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	},
-		// 	{ 'id': 6,
-		// 		'name': 'Green Lehenga with embroidery',
-		// 	  'image': 'product-3.jpg',
-		// 	  'description': 'Try that out to test your elegance'
-		// 	}
-		// ];
 		return {
 			getProductsByCategoryType: function(categoryType) {
-				var urlPath = '/api/products/' + categoryType;
 				return $http( {
 					method: 'GET',
-					url: '/api/products/' + categoryType
+					url: '/api/product/' + categoryType
 				});
 			},
 			getProductDetailById: function(productId) {
-				var urlPath = '/api/products/' + productId;
-				// return products;
 				return $http( {
 					method: 'GET',
-					url: '/api/products/' + productId
+					url: '/api/product/' + productId
 				});
 			},
 			getProductDetailById: function(userInfo) {

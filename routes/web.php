@@ -35,13 +35,14 @@ Route::group(array('prefix' => 'api'), function() {
     	});
     });
 
+    Route::post('/admin/add-product', 'ProductController@store');
     //API for ProductController
     Route::group(array('prefix' => 'product'), function() {
         
         Route::get('/', 'ProductController@index');
+        Route::get('/{categoryId}', 'ProductController@indexByCategory');
 
         Route::group(array('prefix' => ''/*, 'middleware' => 'userAuth'*/), function() {
-            Route::post('/', 'ProductController@store');
             Route::put('/{id}', 'ProductController@update');
             Route::delete('/{id}', 'ProductController@destroy');
         });

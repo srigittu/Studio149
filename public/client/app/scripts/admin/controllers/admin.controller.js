@@ -17,14 +17,33 @@
     function AdminController($scope, AdminService) {
         var vm = this;
         vm.product = {};
-        vm.sizes = [];
+        vm.product.sizes = [];
+        vm.images = [];
+
+
+        $('#images').change(function() {
+            vm.getLogo(this);
+        });
+
+        vm.getLogo = function(images) {
+          angular.forEach(images.files, function(file, size) {
+            vm.images.push(file);
+          });
+        };
         
         vm.addProduct = function() {
-          $("input:checkbox[name=type]:checked").each(function(){
-            vm.sizes.push($(this).val());
+          vm.product.sizes = [];
+          angular.forEach(vm.product.selectedSizes, function(value, size) {
+            vm.product.sizes.push(size);
           });
-          vm.product.sizes = vm.sizes;
-          var promise = AdminService.addProduct(vm.product)
+          var formData = new FormData();
+          angular.forEach(vm.product, function(value, key) {
+              formData.append(key, value);
+          });
+          angular.forEach(vm.images, function(value, key) {
+              formData.append('images[]', value);
+          });
+          var promise = AdminService.addProduct(formData)
           promise.then(function(response) {
               if(response) {
                   console.log('added product successfully');

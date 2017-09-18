@@ -33,8 +33,9 @@
 			addProduct: function(product) {
 			    return $http({
                     method: 'POST',
-					url: 'admin/add-product',
-					data: product
+					url: '/api/admin/add-product',
+					data: product,
+					isFile: true
 				});
 			}
 		};

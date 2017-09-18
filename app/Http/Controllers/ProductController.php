@@ -29,6 +29,23 @@ class ProductController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexByCategory($categoryId)
+    {
+        $productsByCategory = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('status', 1)->whereHas('productDetail', function($q) use($categoryId) {
+                $q->where('category_id', $categoryId);
+            })->get();
+
+        return response(array(
+                'status' => 'success',
+                'products' => $productsByCategory
+                    ), 200);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,31 +53,60 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {   
-        $lastProductId = Product::all()->last()->id;
+        
+        $lastProduct = Product::all()->last();
 
-        if (!$lastProductId) {
+        if (!$lastProduct) {
             $lastProductId = 0;
+        } else {
+            $lastProductId = $lastProduct->id;
         }
-
+        
         $category = Category::find($request->categoryId);
 
-        $sizes = Size::find([$request->sizeIds]);
+        $productCode = '#PRD-'.++$lastProductId.'&CA-'.$category->id;
+
+        $imageNames = array();
+        $images = $request->file('images');
+        if (count($images)) {
+            foreach ($images as $image) {
+                if (!empty($image) && $image->isValid()) {
+                    $imageName = $image->getClientOriginalName();
+                    $destinationPath = base_path() . '/assets/images/products/'.$productCode .'/' ;
+                    if (!file_exists($destinationPath)) {
+                        if (mkdir($destinationPath, 0777, true)) {
+                            $uploadedResult = $image->move($destinationPath, $imageName);
+                            $imageNames[] = $imageName;
+                        } else {
+                            return false;
+                        }
+                    } else {
+                        $uploadedResult = $image->move($destinationPath, $imageName);
+                        $imageNames[] = $imageName;
+                    }
+                }
+            }
+        }
+        $productImages = implode(",", $imageNames);
+
+        $sizes = Size::whereIn('size', explode(",", $request->sizes))->get();
 
         $product = new Product();
-        $product->code = '#PRD'.++$lastProductId.'CA'.$category->id;
+        $product->code = $productCode;
         $product->creator_id = $request->userId;
         $product->save();
 
         $productDetail = new ProductDetail();
-        $productDetail->name = $request->productName;
-        $productDetail->description = $request->productDescription;
-        $productDetail->color = $request->productColor;
-        $productDetail->material = $request->productMaterial;
-        $productDetail->image = $request->productImage;
-        $productDetail->price = $request->productPrice;
-        $productDetail->sizes()->sync($sizes);
-        $productDetail->category()->save($category);
+        $productDetail->category_id = $category->id;
+        $productDetail->name = $request->name;
+        $productDetail->description = $request->description;
+        $productDetail->color = $request->color;
+        $productDetail->material = $request->material;
+        $productDetail->designer = $request->designer;
+        $productDetail->image = $productImages;
+        $productDetail->price = $request->price;
         $product->productDetail()->save($productDetail);
+        $productDetail->sizes()->sync($sizes);
 
         return response(array(
                 'status' => 'success',
@@ -115,16 +161,17 @@ class ProductController extends Controller
 
         $sizes = Size::find([$request->sizeIds]);
 
-        $product->code = '#PRD'.$id.'CA'.$category->id;
+        $product->code = '#PRD-'.$id.'&CA-'.$category->id;
         $product->creator_id = $request->userId;
         $product->save();
 
-        $productDetail->name = $request->productName;
-        $productDetail->description = $request->productDescription;
-        $productDetail->color = $request->productColor;
-        $productDetail->material = $request->productMaterial;
-        $productDetail->image = $request->productImage;
-        $productDetail->price = $request->productPrice;
+        $productDetail->name = $request->name;
+        $productDetail->description = $request->description;
+        $productDetail->color = $request->color;
+        $productDetail->material = $request->material;
+        $productDetail->designer = $request->designer;
+        $productDetail->image = $$productImages;
+        $productDetail->price = $request->price;
         $productDetail->sizes()->sync($sizes);
         $productDetail->category()->save($category);
         $product->productDetail()->save($productDetail);
@@ -150,117 +197,5 @@ class ProductController extends Controller
                 'status' => 'success',
                 'message' => 'Product deleted successfully'
                     ), 200);
-    }
-
-
-    public function clientUpdate(Request $request, $clientId)
-    {
-        try {
-            $logo = $request->file('logo');
-            $clientId = $clientId;
-            if (!empty($logo) && $logo->isValid()) {
-                $logoName = $logo->getClientOriginalName();
-                $logoExtension = $logo->getClientOriginalExtension();
-                $destinationPath = public_path() . '/assets/uploads/client/logos/' .$clientId .'/' ;
-                Log::info("Uploading company logo details: " . "Logo name: " . $logoName . "," . 'Destination Path: ' . $destinationPath);
-                if (!file_exists($destinationPath)) {
-                    if (mkdir($destinationPath, 0777, true)) {
-                        $uploadedResult = $logo->move($destinationPath, $logoName);
-                        if ($uploadedResult) {
-                            $request->merge(array('logo' => 'Company logo saved successfully'));
-                        } else {
-                            $request->merge(array('logo' => 'Company logo is not uploaded'));
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    $oldCompanyLogo = public_path() . '/assets/uploads/client/logos/' .$clientId .'/*';
-                    array_map('unlink', glob($oldCompanyLogo));
-                    $uploadedResult = $logo->move($destinationPath, $logoName);
-                    if ($uploadedResult) {
-                        $request->merge(array('logoName' => $logoName));
-                    } else {
-                        $request->merge(array('logoName' => $logoName));
-                    }
-                }
-                $companyLogo = $logoName;
-            } else {
-                if ($request->companyLogo && $request->companyLogo != 'null' ) {
-                    $companyLogo = $request->companyLogo;
-                } else {
-                    $companyLogo = null;
-                    $oldCompanyLogo = public_path() . '/assets/uploads/client/logos/' .$clientId .'/*';
-                    array_map('unlink', glob($oldCompanyLogo));
-                    $request->merge(array('logoUpdateMessage' => 'client logo is not uploaded!'));
-                }
-            }
-            $clientArray = array (
-                'clnt_id' => $clientId,
-                'pers_id' => $request->persId,
-                'curn_id' => $request->curnId,
-                'user_id' => $request->userId,
-                'firstname' => $request->firstName,
-                'lastname' => $request->lastName,
-                'email' => $request->email,
-                'company_name' => $request->company,
-                'company_logo' => $companyLogo,
-                'mobile_number' => $request->mobile,
-                'phone' => $request->work,
-                'stamp_duty_perc' => $request->stampDutyPerc,
-                'gst_perc' => $request->gstPerc,
-                'address1' => $request->address1,
-                'address2' => $request->address2,
-                'stateId' => $request->state,
-                'countryId' => $request->country,
-                'city' => $request->city,
-                'postalCode' => $request->postalCode,
-                'billTo' => $request->billedTo,
-                'user_status' => $request->status,
-            );
-            $oUser = User::with('client', 'persondetails', 'persondetails.adddressdetails', 'persondetails.adddressdetails.countrydlt', 'persondetails.adddressdetails.statedlt','userrole')->where('user_name', $request->email)->get();
-
-            if (isset($oUser[0]->user_inso_contact_id)) {
-                $aContactData = array(
-                    'FirstName' => $request->firstName,
-                    'LastName' => $request->lastName,
-                    'Company' => $request->company,
-                    'City' => $request->city,
-                    'Phone1' => $request->mobile,
-                    'StreetAddress1' => $request->address1,
-                    'StreetAddress2' => $request->address2,
-                    'Country' => $oUser[0]->persondetails->adddressdetails->countrydlt->ctry_name,
-                    'State' => $oUser[0]->persondetails->adddressdetails->statedlt->stat_name,
-                    'PostalCode' => $request->postalCode,
-                    'contact_id' => $oUser[0]->user_inso_contact_id,
-                );
-                $this->_manageInfusionSoftContacts($aContactData, 'update');
-            }
-            if (isset($request->addrId) && ($request->addrId != 'null')) {
-                $clientArray ['addr_id'] = $request->addrId;
-            }
-
-            $CreateUser = new CreateUserJob($clientArray);
-            $oCreateUser = dispatch($CreateUser);
-            $CreateAddressJob = new AddressJob($clientArray);
-            $respCreateAddress = dispatch($CreateAddressJob);
-            $clientArray['address_id'] = $respCreateAddress['addr_id'];
-            $oUser = User::where('user_name', '=', $request->email)->get();
-            $CreatePersonalDetailsJob= new CreatePersonalDetailsJob($clientArray);
-            $respCreatePersonalDetails = dispatch($CreatePersonalDetailsJob);
-            $createClient = new CreateClientJob($clientArray);
-            $responseCreateClient = dispatch($createClient);
-            return response(array(
-                'status' => 'success', 'message' => 'Your profile saved successfully!'
-            ), 200);
-        } catch (\Exception $e) {
-            Log::error('In Controller:UserController, Function:clientUpdate, Err:'.$e);
-            if (isset($current_pers_id) && !empty($current_pers_id)) {
-                $deleteuser = PersonalDetail::where('pers_id', $current_pers_id)->delete();
-            }
-            return response(array(
-                'status' => 'error', 'message' => $e->getMessage()
-            ), 402);
-        }
     }
 }
