@@ -33,7 +33,7 @@
 			getProductDetailById: function(productId) {
 				return $http( {
 					method: 'GET',
-					url: '/api/product/' + productId
+					url: '/api/product-detail/' + productId
 				});
 			},
 		

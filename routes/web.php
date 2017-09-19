@@ -36,6 +36,7 @@ Route::group(array('prefix' => 'api'), function() {
     });
 
     Route::post('/admin/add-product', 'ProductController@store');
+    Route::post('/product-detail/{productId}', 'ProductController@show');
     //API for ProductController
     Route::group(array('prefix' => 'product'), function() {
         

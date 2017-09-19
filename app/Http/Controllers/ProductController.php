@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('status', 1)->get();
+        $products = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->get();
 
         return response(array(
                 'status' => 'success',
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function indexByCategory($categoryId)
     {
-        $productsByCategory = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('status', 1)->whereHas('productDetail', function($q) use($categoryId) {
+        $productsByCategory = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->whereHas('productDetail', function($q) use($categoryId) {
                 $q->where('category_id', $categoryId);
             })->get();
 
@@ -121,9 +121,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($productId)
     {
-        $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->first();
+        $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('id', $productId)->first();
 
         if (!$product) {
             return response(array(

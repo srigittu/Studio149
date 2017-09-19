@@ -6,6 +6,7 @@
         .controller('AdminController', AdminController);
 
 
+    
     /**
      * @ngdoc AdminController
      * @name AdminController
@@ -14,12 +15,11 @@
      * Admin controller contains all the models related to admin module
      * @author Tungstn Developers
      */
-    function AdminController($scope, AdminService) {
+    function AdminController($scope, $state, toastr, AdminService) {
         var vm = this;
         vm.product = {};
         vm.product.sizes = [];
         vm.images = [];
-
 
         $('#images').change(function() {
             vm.getLogo(this);
@@ -31,7 +31,7 @@
           });
         };
         
-        vm.addProduct = function() {
+        vm.addProduct = function(form) {
           vm.product.sizes = [];
           angular.forEach(vm.product.selectedSizes, function(value, size) {
             vm.product.sizes.push(size);
@@ -43,10 +43,14 @@
           angular.forEach(vm.images, function(value, key) {
               formData.append('images[]', value);
           });
+          vm.images = [];
           var promise = AdminService.addProduct(formData)
           promise.then(function(response) {
               if(response) {
-                  console.log('added product successfully');
+                  form.$setPristine();
+                  $state.go($state.current, {}, {reload: true});
+                  toastr.success('Product Added Successfully!! code:'+response.data.product.code);
+                  console.log('Product Added Successfully!! code', response.data.product.code);
               } else {
                   console.log('Fuck off');
               }
@@ -62,5 +66,5 @@
      * All the dependency injections for admin module
      * @author Tungstn Developers
      */
-    AdminController.$inject = ['$scope', 'AdminService'];
+    AdminController.$inject = ['$scope', '$state', 'toastr', 'AdminService'];
 } )();
