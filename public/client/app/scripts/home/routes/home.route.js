@@ -31,6 +31,31 @@
 						url: '/studio',
 						templateUrl: '../app/scripts/home/views/studio.html',
 						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'press', {
+						url: '/press',
+						templateUrl: '../app/scripts/home/views/press.html',
+						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'terms', {
+						url: '/terms',
+						templateUrl: '../app/scripts/home/views/terms-of-service.html',
+						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'pricing', {
+						url: '/pricing',
+						templateUrl: '../app/scripts/home/views/pricing.html',
+						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'refunds', {
+						url: '/refunds',
+						templateUrl: '../app/scripts/home/views/refunds.html',
+						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'privacypolicy', {
+						url: '/privacypolicy',
+						templateUrl: '../app/scripts/home/views/privacy-policy.html',
+						controller: 'HomeController as homeCtrl'
 					} );
 			}
 		]

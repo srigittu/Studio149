@@ -14,17 +14,30 @@
      * Home controller contains all the models related to product module
      * @author Tungstn Developers
      */
-    function ProductController($scope, ProductService, $stateParams, $state, toastr) {
+    function ProductController($scope, ProductService, OrderService, $stateParams, $state, toastr) {
         var vm = this;
         var categoryType = '';
         vm.user = {};
         vm.init = function() {
             categoryType = $stateParams.categoryName;
+            
+            if (categoryType == 'pret') {
+                categoryType = 1;
+            } else if (categoryType == 'fusion') {
+                categoryType = 2;
+            } else if (categoryType == 'bridal') {
+                categoryType = 3;
+            }
+            console.log('category-------', categoryType);
             var promise = ProductService.getProductsByCategoryType(categoryType);
-            // vm.products = promise; // remove this line when backend api is ready.
             promise.then(function(response) {
                 if(response.data) {
-                  vm.products = response.data;
+                 console.log('response-------', response)
+                  vm.products = response.data.products;
+                 angular.forEach(vm.products, function(product) {
+                     var productImages = product.product_detail.image.split(',');
+                     product.productImages = productImages;
+                 });
                 } else {
                   console.log('Sorry could not get products');
                 }
@@ -35,10 +48,7 @@
             // productId = $stateParams.id;
             $state.go('product-detail', {"id" : productId})
             var promise = ProductService.getProductDetailById(productId);
-            // vm.product = promise; // remove this line when backend api is ready.
-            
-
-            // The below code will work once the api is ready
+            vm.product = promise; // remove this line when backend api is ready.
             promise.then(function(response) {
                 if(response.data) {
                     vm.product = response.data;
@@ -48,15 +58,15 @@
             });
         }
 
-        vm.submitUserPaymentDetails = function() {
-          if(vm.user == null) {
-            toastr.error('Enter your details to make payment');
-          } else {
-            vm.user.productinfo = 'Lehenga'; //vm.product.product_name;
-            vm.user.amount = 12300; //vm.product.price;
-            var promise = ProductService.submitUserPaymentDetails(vm.user);
-          }
-          
+        vm.sendEnquiryDetails =function(userInfo) {
+            var promise = OrderService.sendEnquiryDetails(userInfo);
+            promise.then(function(response) {
+                if(response) {
+                    console.log('success------');
+                } else {
+                    console.log('failure------');
+                }
+            });
         }
     }
 
@@ -68,5 +78,5 @@
      * All the dependency injections for product module
      * @author Tungstn Developers
      */
-    ProductController.$inject = ['$scope', 'ProductService', '$stateParams', '$state', 'toastr'];
+    ProductController.$inject = ['$scope', 'ProductService', 'OrderService', '$stateParams', '$state', 'toastr'];
 } )();

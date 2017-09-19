@@ -16,6 +16,8 @@ var config = function() {
             'bower_components/bootstrap/dist/css/bootstrap.min.css',
             'bower_components/angular-toastr/dist/angular-toastr.min.css',
             'bower_components/angular-bootstrap/ui-bootstrap-csp.css',
+            'bower_components/slick-carousel/slick/slick.css',
+            'bower_components/slick-carousel/slick/slick-theme.css'
         ],
         scss: [
             'app/styles/scss/*.scss'
@@ -37,7 +39,8 @@ var config = function() {
             'bower_components/angular-toastr/dist/angular-toastr.min.js',
             'bower_components/angular-toastr/dist/angular-toastr.tpls.min.js',
             'bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
-            'bower_components/bootstrap/dist/js/bootstrap.min.js'
+            'bower_components/bootstrap/dist/js/bootstrap.min.js',
+            'bower_components/slick-carousel/slick/slick.min.js',
         ],
         zip: './zip'
     };

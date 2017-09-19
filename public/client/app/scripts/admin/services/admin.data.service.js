@@ -11,7 +11,7 @@
 	 * @description
 	 * Dashboard module service injection
 	 * @module app.admin
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	AdminDataService.$inject = [ '$http' ];
 
@@ -20,7 +20,7 @@
 	 * @name AdminDataService
 	 * @description  service http request and response handler
 	 * @module app.admin
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	function AdminDataService( $http ) {
 		return {

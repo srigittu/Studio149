@@ -27,7 +27,12 @@
 						url: '/product-detail/:id',
 						templateUrl: '../app/scripts/product/views/product-detail.html',
 						controller: 'ProductController as productCtrl'
-					} );
+					} )
+					.state('payment-success', {
+						url: '/payment-success',
+						templateUrl: '../app/scripts/product/views/success.html',
+						controller: 'ProductController as productCtrl'
+					})
 			}
 		]
 	);

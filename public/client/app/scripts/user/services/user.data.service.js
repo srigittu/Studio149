@@ -11,7 +11,7 @@
 	 * @description
 	 * Dashboard module service injection
 	 * @module app.user
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	UserDataService.$inject = [ '$http' ];
 
@@ -20,7 +20,7 @@
 	 * @name UserDataService
 	 * @description  service http request and response handler
 	 * @module app.user
-	 * @author Ideas2IT Technologies
+	 * @author Tungstn Developers
 	 */
 	function UserDataService( $http ) {
 		return {

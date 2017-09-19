@@ -26,7 +26,8 @@ App Studio149 Core
 		'app.admin',
 		'app.user',
 		'app.home',
-		'app.product'
+		'app.product',
+		'app.order'
 	] );
 
 } )();

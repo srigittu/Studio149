@@ -54,7 +54,7 @@ html {
 }
 body {
   overflow-x: hidden !important;
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Lato', sans-serif;
 }
 
 #navMain .nav li a{
@@ -107,6 +107,10 @@ body {
 .navbar {
   .logo-section {
     display: table;
+    &:before {
+      position: absolute;
+      background-color: #e5e0ea;
+    }
   }
 
   li.dropdown i {
@@ -114,7 +118,11 @@ body {
   }
   ul.store-dropdown {
     >li>a {
-      font-size: 18px;
+      font-size: 2rem;
+      &:focus, &:hover {
+        color: #DAA520;
+        background-color: white;
+      }
     }
   }
   .navbar-nav>li {
@@ -124,10 +132,13 @@ body {
     >a {
       font-size: 1.9rem;
       text-transform: uppercase;
-      &:focus, &:hover, &:visited {
+      color: #000;
+      cursor: pointer;
+      &:focus, &:hover {
         background-color: white;
         border: none;
         border-radius: none;
+        color: #DAA520;
       }
     }
   }
@@ -151,7 +162,6 @@ body {
 .home-section {
   > img {
     width: 100%;
-    //height: 750px;
   }
   
   .section-text {
@@ -163,6 +173,8 @@ body {
     text-align: center;
     padding-top: 1.5rem;
     font-size: 20px;
+    padding-left: 0;
+    padding-right: 0;
   }
   .section-text.fashion-section-text {
     padding-left: 1.5rem;
@@ -171,49 +183,110 @@ body {
     margin-right: 3rem;
   }
   .header-text {
-    color: #3d3b41;
+    color: #DAA520;
     font-size: 3.5rem;
     text-align: center;
-    font-weight: 900;
-    padding-bottom: 1rem;
+    text-transform: uppercase;
   }
   .header-text.fashion-week-text {
     font-weight: normal;
+    padding-bottom: 1rem;
+    text-transform: capitalize;
   }
   padding: 2.5rem 1.5rem;
   &:first-child {
-    padding-top: 0;
+    padding-top: 132px;
+    img {
+      max-height: 752.22px;
+      width: 100%;
+    }
+  }
+  &:nth-child(2) {
+    margin-top: 60px;
   }
   #arrivals-carousel {
+    .left.carousel-control {
+      top: 460px;
+      left: 1335px;
+    }
+    .right.carousel-control {
+      top: 460px;
+      right: 375px;
+    }
     .carousel-inner .item > img {
       width: 465px;
-      margin-left: 15rem;
+      margin-left: 35rem;
     }
     .carousel-control {
-      margin: 27rem 0 26rem 0;
-      width: 150px;
+      width: 0;
       background: linear-gradient(grey, grey) !important;
       opacity: 0.8;
       i {
-        font-size: 55px;
+        font-size: 40px;
         margin-top: 2.5rem;
-      }
-    }
-    .carousel-control.right {
-      top: 11px;
-      i {
-        margin-left: 0.5rem;
+        color: #DAA520;
       }
     }
     .carousel-caption {
       right: 20%;
-      left: 41.5%;
+      left: 51.5%;
       padding-bottom: 30px;
       bottom: 40%;
-      background-color: grey;
       color: #DAA520;
+      h2 {
+        font-size: 3.5rem;
+      }
+      span {
+        font-size: 1.75rem;
+        color: black;
+        text-shadow: none;
+      }
+      button {
+        padding: 12px 24px;
+        font-size: 2rem;
+        background-color: grey;
+        color: #DAA520;
+        margin-top: 2rem;
+      }
     }
   }
+  .header-image {
+    padding: 0;
+  }
+}
+
+.home-section.swathi-special{
+  padding-left: 30px;
+  padding-right: 30px;
+  cursor: pointer;
+}
+
+.carousel-indicators li {
+  height: 15px;
+  width: 15px;
+  margin-right: 10px;
+  display: none;
+}
+
+.home-section.home-section.swathi-special-text {
+    text-align: center;
+    h2 {
+      padding-top: 20rem;
+      font-size: 3.8rem;
+    }
+    span {
+      padding: 0 4rem;
+      font-size: 1.85rem;
+      display: block;
+      padding-bottom: 2rem;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 2rem;
+      background-color: grey;
+      color: #DAA520;
+      cursor: pointer;
+    }
 }
 
 hr {
@@ -227,14 +300,33 @@ hr {
 }
 
 a.category-title.btn {
-  width: 100%;
   padding: 1.5rem 0;
-  background-color: grey;
   color: #DAA520;
-  font-size: 2.25rem;
+  font-size: 3.25rem;
   border: none;
   font-weight: bold;
   border-radius: 0;
+  position: absolute;
+  width: 94.9%;
+  top: 703px;
+  background-color: #BEBEBE;
+  opacity: 0.75;
+  text-transform: uppercase;
+  i {
+    font-size: 3rem;
+    padding-right: 1.5rem;
+  }
+}
+
+a.product-title.btn {
+  padding: 1.5rem 0;
+  color: #DAA520;
+  font-size: 2rem;
+  border: none;
+  font-weight: bold;
+  border-radius: 0;
+  width: 100%;
+  background-color: #BEBEBE;
   i {
     font-size: 3rem;
     padding-right: 1.5rem;
@@ -266,12 +358,19 @@ a.category-title.btn.specials {
   .footer-list.info {
     li {
       text-align: center;
+      a {
+        color: #4a4a4a;
+        text-decoration: none;
+      }
     }
   }
   .footer-list.inline-list {
     li {
       display: inline;
       padding-right: 5rem;
+      a {
+        color: #4a4a4a;
+      }
       i {
         font-size: 3rem;
       }
@@ -293,35 +392,57 @@ a.category-title.btn.specials {
   }
   background-color: #e5e0ea;
   margin: 0;
+  padding: 0;
+}
+
+.header-image-section {
+  .slick-slide {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 //Studio Page
 
 .studio-section1 {
   .studio-header {
-    color: #3d3b41;
+    color: #DAA520;
     font-size: 3.5rem;
     text-align: center;
-    font-weight: bold;
     padding-bottom: 1rem;
+    text-transform: capitalize;
   }
   .image-section {
     padding: 4.5rem;
+    padding-left: 0;
   }
   .desc-section {
     vertical-align: middle;
     margin-top: 15rem;
+    .schedule-appointment {
+      padding-top: 1rem;
+      text-align: center;
+      button {
+        font-size: 20px;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        &:focus, &:hover, &:active {
+          border-color: transparent;
+          box-shadow: none;
+        }
+      }
+    }
   }
   .desc-header {
-    color: #3d3b41;
+    color: #DAA520;
     font-size: 3rem;
-    text-align: center;
-    font-weight: bold;
     padding-bottom: 1rem;
+    padding-left: 1rem;
   }
   .desc-text {
-    font-size: 2rem;
+    font-size: 1.85rem;
     padding: 1rem;
+    text-align: justify;
   }
   hr {
     width: 6%;
@@ -330,6 +451,8 @@ a.category-title.btn.specials {
   .designer-section {
     img {
       margin: auto;
+      width: 175px;
+      height: 175px;
     }
     hr {
       margin-top: 5px;
@@ -351,11 +474,26 @@ a.category-title.btn.specials {
   margin: 0;
 }
 
+.studio-section1.come-visit {
+  .image-section {
+    padding-right: 0;
+  }
+}
+
 .studio-section1.last-studio-section {
   padding-bottom: 3.5rem;
   img {
     width: 100%;
   }
+}
+
+.last-section-text {
+  text-align: center;
+  font-size: 1.8rem;
+  padding-bottom: 2rem;
+  font-style: italic;
+  font-weight: 600;
+  color: #DAA520;
 }
 
 .studio-section1.designers {
@@ -432,6 +570,7 @@ a.category-title.btn.specials {
     p.prod-desc {
       text-align: center;
       font-size: 2rem;
+      text-transform: capitalize;
     }
     .product-shadow {
       padding: 2.5rem;
@@ -523,6 +662,33 @@ a.category-title.btn.specials {
     }
   }
 
+}
+
+.hidden-section {
+.terms-service-section {
+    padding-top: 120px;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+    min-height: 675px;
+    > h2 {
+      text-align: center;
+      font-weight: 600;
+      color: #DAA520;
+    }
+    .terms-section {
+      font-size: 16px;
+    }
+    .section-points {
+      font-size: 16px;
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+}
+.terms-section-first.terms-service-section {
+  top: 120px;
 }
 
 #navMain .navbar-nav{
@@ -742,19 +908,58 @@ font-size: 3.2em;
   }
 
   .bottom-nav li a, .footer span, .footer ul li a{
-        color: #fff;
-letter-spacing: 3px;
+    color: #fff;
+    letter-spacing: 3px;
     padding: 20px 20px;
-        font-size: 1.2em;
-            letter-spacing: 3px;
+    font-size: 1.2em;
+    letter-spacing: 3px;
   }
 
 .footer{
   margin-top: 30px 
 }
 
+.slick-slide {
+  padding-left: 35px !important;
+  padding-right: 35px !important;
+  outline: none;
+}
+
+.slick-prev {
+  left: -5px;
+}
+
+.slick-next {
+  right: 5px;
+}
+
+.slick-next, .slick-prev {
+  top: 45%;
+}
+
+.slick-prev:before, .slick-next:before{
+    font-family: FontAwesome;
+    color:black !important;
+    font-size: 40px !important;
+}
+
 #contact .content{
   padding-top: 30px;
+}
+
+#carousel {
+  width:960px;
+  border:1px solid #222;
+  height:300px;
+  position:relative;
+  clear:both;
+  overflow:hidden;
+  background:#FFF;
+}
+
+#carousel img {
+  visibility:hidden; /* hide images until carousel can handle them */
+  cursor:pointer; /* otherwise it's not as obvious items can be clicked */
 }
 
 .bottom-nav{
@@ -824,5 +1029,122 @@ address{
 @media only screen and (max-width: 1440px) {
   .main-section {
     margin: 0 auto;
+  }
+}
+
+@media only screen and (max-width: 1440px) and (min-width: 1050px) {
+  .home-section.home-section.swathi-special-text h2 {
+    padding-top: 5rem !important;
+    font-size: 3rem;
+  }
+  
+}
+@media only screen and (max-width: 1050px) {
+  .home-section.home-section.swathi-special-text button {
+    font-size: 1.5rem;
+    padding: 6px 12px;
+  }
+  .home-section.home-section.swathi-special-text h2 {
+    font-size: 2.5rem;
+    padding-top: 3rem;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .navbar {
+    .logo-section {
+      width: 100%;
+      button.navbar-toggle {
+        float: right;
+        margin-top: 22px;
+        margin-left: 30px;
+        &:focus, &:hover {
+          background-color: transparent;
+        }
+      }
+      .navbar-brand.brand-link {
+        float: left;
+        padding-top: 0.5rem;
+      }
+    }
+  }
+  .home-section {
+    .header-text {
+      font-size:  2.5rem;
+    }
+    &:nth-child(2) {
+      > div {
+        &:nth-child(4) {
+          padding-top: 2rem;
+          img {
+            max-height: 447px;
+            width: 100%;
+          }
+        }
+      }
+    }
+    &:nth-child(3), &:nth-child(4) {
+      margin-top: 0;
+    }
+  }
+  a.category-title.btn {
+    font-size: 2.25rem;
+  }
+
+  .main-section #menu-list {
+    padding: 0 3rem;
+  }
+}
+
+@media only screen and (width: 768px) {
+  .home-section.home-section.swathi-special-text h2 {
+    font-size: 2rem;
+    padding-top: 2rem;
+  }
+  .home-section.home-section.swathi-special-text span {
+    font-size: 1.5rem;
+  }
+  .home-section {
+    &:nth-child(2) {
+      > div {
+        &:nth-child(3), &:nth-child(2) {
+            width: 50%;
+        }
+        &:nth-child(4) {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+}
+
+@media only screen and (max-width: 550px) {
+  .home-section {
+    &:first-child {
+      .section-text {
+        .cursive-font {
+          font-size: 20px;
+        }
+        > p:nth-child(3) {
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .home-section {
+    &:first-child {
+      .section-text {
+        .cursive-font {
+          font-size: 18px;
+        }
+        > p:nth-child(3) {
+          font-size: 16px;
+        }
+      }
+    }
   }
 }

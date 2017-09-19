@@ -36,13 +36,7 @@
 					url: '/api/product/' + productId
 				});
 			},
-			getProductDetailById: function(userInfo) {
-                return $http({
-					method: 'POST',
-					url: 'api/product/payment',
-					data: userInfo
-				})
-			}
+		
 		};
 
 
