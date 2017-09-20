@@ -36,6 +36,12 @@
 					url: '/api/product-detail/' + productId
 				});
 			},
+			payAmount: function(razorPaymentId) {
+				return $http({
+					method: 'GET',
+					url: '/api/payment/' + razorPaymentId
+				});
+			}
 		
 		};
 

@@ -36,7 +36,7 @@
                 <span>Color: Maroon</span><span class="pull-right">Material: Cotton</span>
             </div>
             <div class="enquire">
-                <button type="=button" class="btn" data-toggle="modal" data-target="#paymentModal">Buy Now</button>
+                <button type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.payNow()">Pay with Razorpay</button>
             </div>
             <div class="product-description">
                 <p><span>Description :</span> High low-fit and flare strappy dress
@@ -55,4 +55,5 @@
     </div>
 </div>
 <div ng-include src="'../app/scripts/order/views/order.html'"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <footer-section></footer-section>

@@ -42,6 +42,10 @@
 		_self.submitUserPaymentDetails = function(userInfo) {
 			return ProductDataService.submitUserPaymentDetails(userInfo);
 		}
+
+		_self.payAmount = function(razorPaymentId) {
+			return ProductDataService.payAmount(razorPaymentId);
+		}
 	}
 
 } )();
