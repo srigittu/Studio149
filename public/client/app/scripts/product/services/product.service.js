@@ -46,6 +46,10 @@
 		_self.payAmount = function(razorPaymentId) {
 			return ProductDataService.payAmount(razorPaymentId);
 		}
+
+		_self.getSelectedProducts = function(productIds) {
+			return ProductDataService.getSelectedProducts(productIds);
+		}
 	}
 
 } )();

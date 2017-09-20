@@ -49,10 +49,9 @@
             // productId = $stateParams.id;
             $state.go('product-detail', {"id" : productId})
             var promise = ProductService.getProductDetailById(productId);
-            vm.product = promise; // remove this line when backend api is ready.
             promise.then(function(response) {
                 if(response.data) {
-                    vm.product = response.data;
+                    vm.product = response.data.product;
                 } else {
                     console.log('Sorry could not get product details');
                 }

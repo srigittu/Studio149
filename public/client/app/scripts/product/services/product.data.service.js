@@ -41,6 +41,13 @@
 					method: 'GET',
 					url: '/api/payment/' + razorPaymentId
 				});
+			},
+			getSelectedProducts: function(productIds) {
+				return $http({
+					method: 'POST',
+					url: '/api/products/selected/',
+					data: productIds
+				});
 			}
 		
 		};

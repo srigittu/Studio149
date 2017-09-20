@@ -14,7 +14,7 @@
      * Home controller contains all the models related to home module
      * @author Tungstn Developers
      */
-    function HomeController($scope, HomeService, OrderService) {
+    function HomeController($scope, HomeService, OrderService, ProductService, toastr) {
         var vm = this;
         $(document).ready(function(){
             $('.slider-section').slick({
@@ -54,6 +54,18 @@
           });
       }
 
+      vm.init = function() {
+          var productIds = [1, 2, 3, 4];
+          var promise = ProductService.getSelectedProducts(productIds);
+          promise.then(function(response) {
+              if(response) {
+                  vm.products = response.data.products;
+              } else {
+                  toastr.error('Sorry no products found');
+              }
+          });
+      }
+
         
     }
 
@@ -65,5 +77,5 @@
      * All the dependency injections for home module
      * @author Tungstn Developers
      */
-    HomeController.$inject = ['$scope', 'HomeService', 'OrderService'];
+    HomeController.$inject = ['$scope', 'HomeService', 'OrderService', 'ProductService', 'toastr'];
 } )();
