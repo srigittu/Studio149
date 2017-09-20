@@ -14,7 +14,7 @@
         <div class="col-md-4 col-sm-4 col-xs-6 product-card" ng-repeat="product in productCtrl.products" ng-click="productCtrl.getProductDetail(product.id)">
             <div class="col-md-12 col-sm-12 product-shadow">
                 <div class="card">
-                    <img class="card-img-top img-responsive" src="assets/images/product-1.jpg" alt="category">
+                    <img class="card-img-top img-responsive" src="assets/images/products/{{product.code}}/{{product.productImages[0]}}" alt="category">
                     <a href="#" class="product-title btn card-text">{{ product.product_detail.name }}
                     <hr>
                     <p class="prod-desc">{{ product.product_detail.material }}</p>

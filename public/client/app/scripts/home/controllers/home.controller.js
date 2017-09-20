@@ -44,9 +44,12 @@
         });
 
       vm.sendEnquiryDetails = function(userInfo) {
+          userInfo.purpose = 'Schedule Appointment';
+          userInfo.purposeType = 1;
           var promise = OrderService.sendEnquiryDetails(userInfo);
           promise.then(function(response) {
               if(response) {
+                  toastr.success('You will be contacted by one of our representative shortly');
                   console.log('success-------');
               } else {
                   console.log('failure------');

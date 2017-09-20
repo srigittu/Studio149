@@ -197,7 +197,7 @@ body {
   &:first-child {
     padding-top: 132px;
     img {
-      max-height: 752.22px;
+      max-height: 744.22px;
       width: 100%;
     }
   }
@@ -299,6 +299,36 @@ hr {
   padding-bottom: 15px;
 }
 
+.card.category {
+  position: relative;
+}
+
+.card-label-bg {
+  background-color: #000;
+  opacity: 0.4;
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  height: 34px;
+}
+
+.card-label {
+  color: #DAA520;
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  a {
+    color: #DAA520;
+    font-size: 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+    &:hover {
+      opacity: 0.55;
+    }
+  }
+  text-align: center;
+}
+
 a.category-title.btn {
   padding: 1.5rem 0;
   color: #DAA520;
@@ -306,12 +336,6 @@ a.category-title.btn {
   border: none;
   font-weight: bold;
   border-radius: 0;
-  position: absolute;
-  width: 94.9%;
-  top: 703px;
-  background-color: #BEBEBE;
-  opacity: 0.75;
-  text-transform: uppercase;
   i {
     font-size: 3rem;
     padding-right: 1.5rem;

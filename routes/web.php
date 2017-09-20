@@ -36,6 +36,7 @@ Route::group(array('prefix' => 'api'), function() {
     });
 
     Route::post('/admin/add-product', 'ProductController@store');
+    Route::post('/products/selected', 'ProductController@selectedProducts');
     Route::post('/product-detail/{productId}', 'ProductController@show');
     //API for ProductController
     Route::group(array('prefix' => 'product'), function() {
@@ -48,6 +49,7 @@ Route::group(array('prefix' => 'api'), function() {
             Route::delete('/{id}', 'ProductController@destroy');
         });
     });
+    Route::post('/enquiry', 'OrderController@enquiry');
 });
 
 // CATCH ALL ROUTE =============================  

@@ -27,7 +27,7 @@
 			sendEnquiryDetails: function(userInfo) {
 				return $http( {
 					method: 'POST',
-                    url: '/api/order',
+                    url: '/api/enquiry',
                     data: userInfo
 				} );
 			}

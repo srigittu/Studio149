@@ -64,7 +64,7 @@ class ProductController extends Controller
         
         $category = Category::find($request->categoryId);
 
-        $productCode = '#PRD-'.++$lastProductId.'&CA-'.$category->id;
+        $productCode = 'PRD-'.++$lastProductId.'&CA-'.$category->id;
 
         $imageNames = array();
         $images = $request->file('images');
@@ -139,6 +139,29 @@ class ProductController extends Controller
     }
 
     /**
+     * Display list of specified resource.
+     *
+     * @param  int  $productIds
+     * @return \Illuminate\Http\Response
+     */
+    public function selectedProducts($productIds)
+    {
+        $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->whereIn('id', $productIds)->get();
+
+        if (!$product) {
+            return response(array(
+                'status' => 'success',
+                'message' => 'Product not found'
+                    ), 200);
+        }
+
+        return response(array(
+                'status' => 'success',
+                'product' => $product
+                    ), 200);
+    }
+
+    /**
      * Updates the specified resource.
      *
      * @param  int  $id
@@ -161,7 +184,7 @@ class ProductController extends Controller
 
         $sizes = Size::find([$request->sizeIds]);
 
-        $product->code = '#PRD-'.$id.'&CA-'.$category->id;
+        $product->code = 'PRD-'.$id.'&CA-'.$category->id;
         $product->creator_id = $request->userId;
         $product->save();
 

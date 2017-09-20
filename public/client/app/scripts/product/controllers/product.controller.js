@@ -59,9 +59,13 @@
         }
 
         vm.sendEnquiryDetails =function(userInfo) {
+            userInfo.purpose = 'Interest On Product';
+            userInfo.purposeType = 2;
+            userInfo.productId = vm.product.id;
             var promise = OrderService.sendEnquiryDetails(userInfo);
             promise.then(function(response) {
                 if(response) {
+                  toastr.success('You will be contacted by one of our representative shortly');
                     console.log('success------');
                 } else {
                     console.log('failure------');
