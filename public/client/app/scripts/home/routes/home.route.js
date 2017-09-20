@@ -56,6 +56,11 @@
 						url: '/privacypolicy',
 						templateUrl: '../app/scripts/home/views/privacy-policy.html',
 						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'blog', {
+						url: '/blog',
+						templateUrl: '../app/scripts/home/views/blog.html',
+						controller: 'HomeController as homeCtrl'
 					} );
 			}
 		]

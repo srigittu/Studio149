@@ -18,7 +18,7 @@
         var vm = this;
         var categoryType = '';
         vm.user = {};
-        vm.init = function() {
+        vm.getProductsByCategoryType = function() {
             vm.categoryName = $stateParams.categoryName;
             
             if (vm.categoryName == 'pret') {
@@ -28,7 +28,6 @@
             } else if (vm.categoryName == 'bridal') {
                 categoryType = 3;
             }
-            console.log('category-------', categoryType);
             var promise = ProductService.getProductsByCategoryType(categoryType);
             promise.then(function(response) {
                 if(response.data) {
@@ -45,13 +44,14 @@
             });
         }
 
-        vm.getProductDetail = function(productId) {
-            // productId = $stateParams.id;
+        vm.getProductDetail = function() {
+            var productId = $stateParams.id;
             $state.go('product-detail', {"id" : productId})
             var promise = ProductService.getProductDetailById(productId);
             promise.then(function(response) {
                 if(response.data) {
                     vm.product = response.data.product;
+                    vm.status = response.data.status;
                 } else {
                     console.log('Sorry could not get product details');
                 }
@@ -77,9 +77,9 @@
           var promise = ProductService.payAmount(rayzorPaymentId);
           promise.then(function(response) {
               if(response.data) {
-                  console.log('dtata---');
+                  console.log('data---');
               } else {
-                  console.log('Fuck you');
+                  console.log('data not available');
               }
           });
         }

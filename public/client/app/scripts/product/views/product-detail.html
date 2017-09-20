@@ -1,5 +1,5 @@
 <header-section></header-section>
-<div class="container-fluid main-section" ng-cloak>
+<div class="container-fluid main-section product-detail-outline" ng-cloak ng-init=productCtrl.getProductDetail();>
     <div class="row product-detail-section">
         <div class="prod-category padding-bot col-md-12 col-sm-12 col-xs-12">
             Pret
@@ -24,23 +24,26 @@
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6 product-details">
-            <div class="title padding-bot">Studio 149 Pret</div>
-            <div class="product-title padding-bot">Maroon Maniac</div>
-            <div class="product-price padding-bot">Rs. 16,800</div>
-            <div class="product-size padding-bot">Size:</div>
-            <div class="size-list padding-bot">
+            
+            <div class="title padding-bot">Studio 149 {{productCtrl.product.product_detail.category.name}}</div>
+            <div class="product-title padding-bot">{{productCtrl.product.product_detail.name}}</div>
+            <div ng-if="productCtrl.product.product_detail.price <= 100000" class="product-price padding-bot">Rs. {{productCtrl.product.product_detail.price}}</div>
+            <!-- <div class="product-size padding-bot">Size:</div>
+             <div class="size-list padding-bot">
                 <button type="button" class="btn">S</button>
                 <button type="button" class="btn">M</button>
+            </div> -->
+            <div class="enquire">
+                <button ng-if="productCtrl.product.product_detail.price <= 100000" type="=button" class="btn razorpay-payment-button">If interested please click here</button>
             </div>
             <div class="color-material padding-bot">
-                <span>Color: Maroon</span><span class="pull-right">Material: Cotton</span>
+                <span>Color: {{productCtrl.product.product_detail.color}}</span><span class="pull-right">Material: {{productCtrl.product.product_detail.material}}</span>
             </div>
             <div class="enquire">
-                <button type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.payNow()">Pay with Razorpay</button>
+                <button type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.payNow()">Buy Now</button>
             </div>
             <div class="product-description">
-                <p><span>Description :</span> High low-fit and flare strappy dress
-                    in maroon cotton with printed accent waist belt and hem lines.
+                <p><span>Description :</span> {{productCtrl.product.product_detail.description}}
                 </p> 
             </div>
             <div class="delivery-period padding-bot">

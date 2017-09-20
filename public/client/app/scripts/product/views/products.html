@@ -1,5 +1,5 @@
 <header-section></header-section>
-<div class="container-fluid main-img" ng-init="productCtrl.init()" ng-cloak>
+<div class="container-fluid main-img" ng-init="productCtrl.getProductsByCategoryType()" ng-cloak>
     <div class="category-intro-img col-md-12 col-sm-12 col-xs-12">
     </div>
 </div>
@@ -11,11 +11,11 @@
         <div class="latest">
             <div class="context-text latest-text">Latest</div>
         </div>
-        <div class="col-md-4 col-sm-4 col-xs-6 product-card" ng-repeat="product in productCtrl.products" ng-click="productCtrl.getProductDetail(product.id)">
+        <div class="col-md-4 col-sm-4 col-xs-6 product-card" ng-repeat="product in productCtrl.products">
             <div class="col-md-12 col-sm-12 product-shadow">
                 <div class="card">
                     <img class="card-img-top img-responsive" src="assets/images/products/{{product.code}}/{{product.productImages[0]}}" alt="category">
-                    <a href="#" class="product-title btn card-text">{{ product.product_detail.name }}
+                    <a ui-sref="product-detail({id: product.product_detail.id})" class="product-title btn card-text">{{ product.product_detail.name }}
                     <hr>
                     <p class="prod-desc">{{ product.product_detail.material }}</p>
                     </a>

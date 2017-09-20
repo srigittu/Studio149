@@ -1,7 +1,7 @@
 ( function() {
 	'use strict';
 
-	var app = angular.module( 'app.home' );
+	var app = angular.module( 'app.product' );
 
 	//App run time configurations
 	app.run(
