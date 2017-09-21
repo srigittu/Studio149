@@ -14,7 +14,7 @@
      * Home controller contains all the models related to product module
      * @author Tungstn Developers
      */
-    function ProductController($scope, ProductService, OrderService, $stateParams, $state, toastr) {
+    function ProductController($scope, $window, ProductService, OrderService, $stateParams, $state, toastr) {
         var vm = this;
         var categoryType = '';
         vm.user = {};
@@ -73,27 +73,32 @@
             });
         }
 
-        function payProductAmount(rayzorPaymentId) {
-          var promise = ProductService.payAmount(rayzorPaymentId);
-          promise.then(function(response) {
+        function payProductAmount(rayzorPaymentId, amount) {
+            var payment = {};
+            payment.paymentId = rayzorPaymentId;
+            payment.product = vm.product;
+            payment.amount = amount;
+            console.log(payment);
+            var promise = ProductService.payAmount(payment);
+            promise.then(function(response) {
               if(response.data) {
                   console.log('data---');
               } else {
                   console.log('data not available');
               }
-          });
+            });
         }
 
         
         vm.payNow = function() {
             var options = {
-                "key": "rzp_test_LuGtQt0DtkaqfC",
+                "key": "rzp_live_YRGLNlUBXbRiPN",
                 "amount": "100", // 2000 paise = INR 20
                 "name": "Studio 149",
                 "description": "Purchase Description",
                 "image": "",
                 "handler": function (response) {
-                    payProductAmount(response.razorpay_payment_id);
+                    payProductAmount(response.razorpay_payment_id, 100);
                 },
                 "prefill": {
                     "name": "",
@@ -106,7 +111,7 @@
                     "color": "#F37254"
                 }
             };
-            var rzp1 = new Razorpay(options);
+            var rzp1 = new $window.Razorpay(options);
             rzp1.open();
         }
 
@@ -120,5 +125,5 @@
      * All the dependency injections for product module
      * @author Tungstn Developers
      */
-    ProductController.$inject = ['$scope', 'ProductService', 'OrderService', '$stateParams', '$state', 'toastr'];
+    ProductController.$inject = ['$scope', '$window', 'ProductService', 'OrderService', '$stateParams', '$state', 'toastr'];
 } )();

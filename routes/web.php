@@ -50,6 +50,7 @@ Route::group(array('prefix' => 'api'), function() {
         });
     });
     Route::post('/enquiry', 'OrderController@enquiry');
+    Route::post('/payment/{paymentId}', 'OrderController@payment');
 });
 
 // CATCH ALL ROUTE =============================  

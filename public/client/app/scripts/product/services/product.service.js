@@ -43,8 +43,8 @@
 			return ProductDataService.submitUserPaymentDetails(userInfo);
 		}
 
-		_self.payAmount = function(razorPaymentId) {
-			return ProductDataService.payAmount(razorPaymentId);
+		_self.payAmount = function(paymentData) {
+			return ProductDataService.payAmount(paymentData);
 		}
 
 		_self.getSelectedProducts = function(productIds) {

@@ -36,10 +36,11 @@
 					url: '/api/product-detail/' + productId
 				});
 			},
-			payAmount: function(razorPaymentId) {
+			payAmount: function(paymentData) {
 				return $http({
-					method: 'GET',
-					url: '/api/payment/' + razorPaymentId
+					method: 'POST',
+					url: '/api/payment/' + paymentData.paymentId,
+					data: paymentData
 				});
 			},
 			getSelectedProducts: function(productIds) {
