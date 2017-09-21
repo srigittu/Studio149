@@ -32,7 +32,7 @@
 						url: '/payment-success',
 						templateUrl: '../app/scripts/product/views/success.html',
 						controller: 'ProductController as productCtrl'
-					})
+					});
 			}
 		]
 	);

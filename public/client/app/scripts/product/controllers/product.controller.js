@@ -18,6 +18,35 @@
         var vm = this;
         var categoryType = '';
         vm.user = {};
+        vm.userBuyingDetails = {};
+        var options = {
+            "key": "rzp_live_YRGLNlUBXbRiPN",
+            "amount": "", // 2000 paise = INR 20
+            "name": "Studio 149",
+            "description": "Purchase Description",
+            "image": "",
+            "handler": function (response) {
+                payProductAmount(response.razorpay_payment_id, vm.userBuyingDetails);
+            },
+            "prefill": {
+                "name": "",
+                "email": ""
+            },
+            "notes": {
+                "address": ""
+            },
+            "theme": {
+                "color": "#F37254"
+            }
+        };
+
+        $('#userModal').on('hidden.bs.modal', function (e) {
+            $(this)
+            .find("input,textarea,select")
+            .val('')
+            .end();
+        });
+
         vm.getProductsByCategoryType = function() {
             vm.categoryName = $stateParams.categoryName;
             
@@ -36,7 +65,7 @@
                   angular.forEach(vm.products, function(product) {
                      var productImages = product.product_detail.image.split(',');
                      product.productImages = productImages;
-                 });
+                  });
                  console.log('After modification--------', vm.products)
                 } else {
                   console.log('Sorry could not get products');
@@ -51,6 +80,7 @@
             promise.then(function(response) {
                 if(response.data) {
                     vm.product = response.data.product;
+                    options.amount = vm.product.product_detail.price * 100;
                     vm.status = response.data.status;
                 } else {
                     console.log('Sorry could not get product details');
@@ -72,14 +102,21 @@
                 }
             });
         }
+        vm.sendUserPaymentDetails = function(userInfo) {
+            vm.userBuyingDetails = userInfo;
+            var paymentOptions = options;
+            payNow(vm.userBuyingDetails, paymentOptions);
+        }
 
-        function payProductAmount(rayzorPaymentId, amount) {
+        function payProductAmount(rayzorPaymentId) {
             var payment = {};
             payment.paymentId = rayzorPaymentId;
             payment.product = vm.product;
-            payment.amount = amount;
+            payment.amount = vm.product.product_detail.price * 100;
+            payment.user =    vm.userBuyingDetails;
             console.log(payment);
             var promise = ProductService.payAmount(payment);
+            $('#userModal').modal("hide");
             promise.then(function(response) {
               if(response.data) {
                   console.log('data---');
@@ -89,30 +126,13 @@
             });
         }
 
-        
-        vm.payNow = function() {
-            var options = {
-                "key": "rzp_live_YRGLNlUBXbRiPN",
-                "amount": "100", // 2000 paise = INR 20
-                "name": "Studio 149",
-                "description": "Purchase Description",
-                "image": "",
-                "handler": function (response) {
-                    payProductAmount(response.razorpay_payment_id, 100);
-                },
-                "prefill": {
-                    "name": "",
-                    "email": ""
-                },
-                "notes": {
-                    "address": "Hello World"
-                },
-                "theme": {
-                    "color": "#F37254"
-                }
-            };
+        vm.callRazorPay = function(options) {
             var rzp1 = new $window.Razorpay(options);
             rzp1.open();
+        }
+        
+        function payNow(userInfo, options) {
+            vm.callRazorPay(options);
         }
 
     }

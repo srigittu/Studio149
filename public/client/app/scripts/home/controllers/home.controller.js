@@ -57,12 +57,18 @@
           });
       }
 
-      vm.init = function() {
+      vm.getSelectedProducts = function() {
           var productIds = [1, 2, 3, 4];
           var promise = ProductService.getSelectedProducts(productIds);
           promise.then(function(response) {
-              if(response) {
+              if(response.data) {
+                  vm.carouselProducts = [];
                   vm.products = response.data.products;
+                  angular.forEach(vm.products, function(product) {
+                     var productImages = product.product_detail.image.split(',');
+                     product.productImages = productImages;
+                  });
+                  vm.carouselProducts = vm.products.shift();
               } else {
                   toastr.error('Sorry no products found');
               }
