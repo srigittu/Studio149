@@ -58,7 +58,7 @@
       }
 
       vm.getSelectedProducts = function() {
-          var productIds = [1, 2, 3, 4];
+          var productIds = [11, 12, 13, 14];
           var promise = ProductService.getSelectedProducts(productIds);
           promise.then(function(response) {
               if(response.data) {
