@@ -44,9 +44,12 @@
 				});
 			},
 			getSelectedProducts: function(productIds) {
+				var selectedIds = {
+					selectedIds: productIds
+				}
 				return $http({
 					method: 'POST',
-					url: '/api/products/selected/',
+					url: '/api/products/selected',
 					data: productIds
 				});
 			}

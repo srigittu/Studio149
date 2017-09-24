@@ -18,6 +18,8 @@
         var vm = this;
         var categoryType = '';
         vm.user = {};
+        var fixedImageString = "http://localhost:5000/";
+        vm.selectedSize = '';
         vm.userBuyingDetails = {};
         var options = {
             "key": "rzp_live_YRGLNlUBXbRiPN",
@@ -47,6 +49,34 @@
             .end();
         });
 
+        $('#paymentModal').on('hidden.bs.modal', function (e) {
+            $(this)
+            .find("input,textarea,select")
+            .val('')
+            .end();
+        });
+
+        $('#sizeModal').on('hidden.bs.modal', function (e) {
+            $(this)
+            .find("img")
+            .val('')
+            .end();
+        });
+
+        $(document).ready(function(){
+            $('.preview-slider-section').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay:true,
+                dots: true,
+                autoplaySpeed:6000,
+                arrows:true,
+                focusOnSelect: false,
+                prevArrow: '<i class="fa fa-chevron-circle-left slick-prev" aria-hidden="true"></i>',
+                nextArrow: '<i class="fa fa-chevron-circle-right slick-next" aria-hidden="true"></i>'
+            });
+        });
+
         vm.getProductsByCategoryType = function() {
             vm.categoryName = $stateParams.categoryName;
             
@@ -73,13 +103,30 @@
             });
         }
 
-        vm.getProductDetail = function() {
-            var productId = $stateParams.id;
+        vm.openUserModal = function() {
+          if(vm.selectedSize == '') {
+            toastr.error('Please select a size');
+            return;
+          }
+          $('#userModal').modal('show');
+        }
+
+        vm.getProductDetail = function(prodId) {
+            var productId = '';
+            if($stateParams.id) {
+              productId = $stateParams.id;
+            } else {
+                productId = prodId;
+            }
+            var productImages = [];
             $state.go('product-detail', {"id" : productId})
             var promise = ProductService.getProductDetailById(productId);
             promise.then(function(response) {
                 if(response.data) {
                     vm.product = response.data.product;
+                    productImages = vm.product.product_detail.image.split(',');
+                    vm.product.productImages = productImages;
+                    console.log('Single Product-----', vm.product);
                     options.amount = vm.product.product_detail.price * 100;
                     vm.status = response.data.status;
                 } else {
@@ -88,10 +135,25 @@
             });
         }
 
+        // vm.showImage = function(event) {
+        //     var modalImage;
+        //     console.log('event image',event.target.src);
+        //     var imageUrl = cutFromString(fixedImageString, event.target.src);
+        //     console.log('imageUrl-----', imageUrl);
+        //     modalImage = document.getElementById('preview-image');
+        //     modalImage.src = imageUrl;
+        //     $('#imageModal').modal('show');
+        // }
+
+        // function cutFromString(oldStr, fullStr) {
+        //     return fullStr.split(oldStr).join('');
+        // }
+        
         vm.sendEnquiryDetails =function(userInfo) {
             userInfo.purpose = 'Interest On Product';
             userInfo.purposeType = 2;
             userInfo.productId = vm.product.id;
+            $('#paymentModal').modal('hide');
             var promise = OrderService.sendEnquiryDetails(userInfo);
             promise.then(function(response) {
                 if(response) {
@@ -105,6 +167,15 @@
         vm.sendUserPaymentDetails = function(userInfo) {
             vm.userBuyingDetails = userInfo;
             var paymentOptions = options;
+            if(vm.userBuyingDetails.phone.toString().length !== 10) {
+                toastr.error('The mobile number must have 10 digits');
+                return;
+            }
+            if(vm.userBuyingDetails.pincode.toString().length !== 6) {
+                toastr.error('Pincode should must have 6 digits');
+                return;
+            }
+            $('#userModal').modal('hide');
             payNow(vm.userBuyingDetails, paymentOptions);
         }
 
@@ -114,6 +185,7 @@
             payment.product = vm.product;
             payment.amount = vm.product.product_detail.price * 100;
             payment.user =    vm.userBuyingDetails;
+            payment.user.selectedSize = vm.selectedSize;
             console.log(payment);
             var promise = ProductService.payAmount(payment);
             $('#userModal').modal("hide");
