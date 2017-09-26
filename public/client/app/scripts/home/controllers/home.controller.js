@@ -16,14 +16,14 @@
      */
     function HomeController($scope, HomeService, OrderService, ProductService, toastr) {
         var vm = this;
+        
         $(document).ready(function(){
-            $('.slider-section').slick({
-                slidesToShow: 3,
+             $('.home-slider-section').slick({
+                slidesToShow: 1,
                 slidesToScroll: 1,
                 autoplay:true,
                 dots: true,
-                autoplaySpeed:6000,
-                arrows:true,
+                arrows:false,
                 focusOnSelect: false,
                 prevArrow: '<i class="fa fa-chevron-circle-left slick-prev" aria-hidden="true"></i>',
                 nextArrow: '<i class="fa fa-chevron-circle-right slick-next" aria-hidden="true"></i>'
@@ -56,12 +56,12 @@
             });
         });
         $(document).ready(function(){
-             $('.home-slider-section').slick({
-                slidesToShow: 1,
+            $('.slider-section').slick({
+                slidesToShow: 3,
                 slidesToScroll: 1,
                 autoplay:true,
                 dots: true,
-                autoplaySpeed:5000,
+                autoplaySpeed:6000,
                 arrows:true,
                 focusOnSelect: false,
                 prevArrow: '<i class="fa fa-chevron-circle-left slick-prev" aria-hidden="true"></i>',

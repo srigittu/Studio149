@@ -14,11 +14,10 @@
                 <div class="card">
                     <img class="card-img-top img-responsive" src="assets/images/products/{{product.code}}/{{product.productImages[0]}}" alt="category">
                     <a ui-sref="product-detail({id: product.id})" class="product-title btn card-text">{{ product.product_detail.name }}
-                    <hr>
-                    <p class="prod-desc">{{ product.product_detail.material }}</p>
-                    <hr>
-                    <p ng-if= "product.product_detail.price !== '0.00'" class="prod-desc">Rs. {{ product.product_detail.price }}</p>
-                    <p ng-if= "product.product_detail.price == '0.00'" class="prod-desc">Price on request</p>
+                    <br>
+                    <p class="prod-desc">{{ product.product_detail.category.name }}</p>
+                    <p ng-if= "product.product_detail.price !== '0.00'" class="prod-desc prod-price">Rs. {{ product.product_detail.price }}</p>
+                    <p ng-if= "product.product_detail.price == '0.00'" class="prod-desc prod-price">Price on request</p>
                     </a>
                 </div>
             </div>
