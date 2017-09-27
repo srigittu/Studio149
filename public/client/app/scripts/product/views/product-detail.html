@@ -56,10 +56,10 @@
                 <p><span>Description :</span> {{productCtrl.product.product_detail.description}}
                 </p> 
             </div>
-            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price !== 0.00">
+            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price !== '0.00'">
                 <span>Estimated Delivery :</span> 3-5 Working days
             </div>
-            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price == 0.00">
+            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price == '0.00'">
                 <span>Estimated Delivery :</span> 6 Weeks
             </div>
             <hr>

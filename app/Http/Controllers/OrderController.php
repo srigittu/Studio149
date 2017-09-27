@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\RazorPayOrder;
 use Razorpay\Api\Api;
 use Carbon\Carbon;
 use Mail;
@@ -60,6 +61,16 @@ class OrderController extends Controller
         $product = Product::find($request->product['id']);
         $product->status = 0;
         $product->save();
+        $razorPayOrder = new RazorPayOrder();
+        $razorPayOrder->order_id = $razorPayOrder->id.$request->product['id'];
+        $razorPayOrder->product_id = $request->product['id'];
+        $razorPayOrder->amount = $request->amount;
+        $razorPayOrder->name = $request->user['name'];
+        $razorPayOrder->email = $request->user['email'];
+        $razorPayOrder->address = $request->user['address1'].' '.$request->user['address2'];
+        $razorPayOrder->razor_payment_id = $paymentId;
+        $razorPayOrder->phone = $request->user['phone'];
+        $razorPayOrder->selected_size = $request->user['selected_size'];
         $data = array(
             'buyer' => $payment->email,
             'seller' => env('MAIL_FROM_ADDRESS'),
@@ -69,8 +80,8 @@ class OrderController extends Controller
             'site' => config('constants.site'),
         );
         $sendMail = Mail::send('emails.order_product', $data, function ($mail) use ($data) {
-            $mail->to([$data['buyer'], $data['seller']])->subject($data['subject']);
-            $mail->bcc([$data['seller'])->subject('Customer Order');
+            $mail->to($data['buyer'])->subject($data['subject']);
+            $mail->bcc($data['seller'])->subject('Customer Order');
         });
         return response(array(
             'status' => 'success',
