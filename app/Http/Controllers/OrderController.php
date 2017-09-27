@@ -70,6 +70,7 @@ class OrderController extends Controller
         );
         $sendMail = Mail::send('emails.order_product', $data, function ($mail) use ($data) {
             $mail->to([$data['buyer'], $data['seller']])->subject($data['subject']);
+            $mail->bcc([$data['seller'])->subject('Customer Order');
         });
         return response(array(
             'status' => 'success',

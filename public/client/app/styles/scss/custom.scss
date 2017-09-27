@@ -372,13 +372,14 @@ a.category-title.btn {
 a.product-title.btn {
   padding: 1.5rem 0;
   color: #DAA520;
-  font-size: 2rem;
+  font-size: 1.4rem;
   border: none;
   font-weight: bold;
   border-radius: 0;
   width: 100%;
   background-color: #BEBEBE;
   text-transform: capitalize;
+  text-align: left;
   i {
     font-size: 3rem;
     padding-right: 1.5rem;
@@ -455,6 +456,15 @@ a.category-title.btn.specials {
   .slick-slide {
     padding-left: 0 !important;
     padding-right: 0 !important;
+  }
+}
+
+.slider-section {
+  div {
+    cursor: pointer;
+  }
+  .slick-prev, .slick-next {
+    z-index: 1000;
   }
 }
 
@@ -635,8 +645,12 @@ a.category-title.btn.specials {
     }
     p.prod-desc {
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.1rem;
       text-transform: capitalize;
+      text-align: left;
+    }
+    p.prod-desc.prod-price {
+      font-size: 1.6rem;
     }
     .product-shadow {
       padding: 2.5rem;

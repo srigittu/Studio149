@@ -126,6 +126,7 @@
                     vm.product = response.data.product;
                     productImages = vm.product.product_detail.image.split(',');
                     vm.product.productImages = productImages;
+                    vm.product.status = 0;
                     console.log('Single Product-----', vm.product);
                     options.amount = vm.product.product_detail.price * 100;
                     vm.status = response.data.status;
@@ -172,7 +173,7 @@
                 return;
             }
             if(vm.userBuyingDetails.pincode.toString().length !== 6) {
-                toastr.error('Pincode should must have 6 digits');
+                toastr.error('Pincode must have 6 digits');
                 return;
             }
             $('#userModal').modal('hide');

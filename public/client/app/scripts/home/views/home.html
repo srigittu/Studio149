@@ -42,22 +42,30 @@
 	</div>
 	<div class="col-md-12 col-sm-12 col-xs-12 home-section swathi-special swathi-special-text">
 		<a ui-sref="product-detail({id: homeCtrl.products[4].id})">
-		    <img src="assets/images/products/{{homeCtrl.products[4].code}}/{{homeCtrl.products[4].productImages[0]}}" class="img-responsive" ng-click="homeCtrl.getProductDetail(products[4].id);">
+		    <img src="assets/images/swathi-special.jpg" class="img-responsive" ng-click="homeCtrl.getProductDetail(products[4].id);">
 		</a>
 	</div>
 	<div class="col-md-12 col-sm-12 home-section">
 		<div class="header-text">New Arrivals</div>
 		<hr>
 		<div class="slider-section">
-			<div ng-repeat="product in homeCtrl.carouselProducts"><a ui-sref="product-detail({id: product.id})">
-				  <img src="assets/images/products/{{product.code}}/{{product.productImages[0]}}" class="img-responsive" alt="carousel2">
-				</a>
-		    </div>
+			 <div><a ui-sref="product-detail({id: homeCtrl.carouselProducts[0].id})">
+				  <img src="assets/images/22-carousel.jpg" class="img-responsive" alt="carousel2">
+			</a></div>
+			<div><a ui-sref="product-detail({id: homeCtrl.carouselProducts[1].id})">
+				  <img src="assets/images/23-carousel.jpg" class="img-responsive" alt="carousel2">
+			</a></div>
+			<div><a ui-sref="product-detail({id: homeCtrl.carouselProducts[2].id})">
+				  <img src="assets/images/24-carousel.jpg" class="img-responsive" alt="carousel2">
+			</a></div>
+			<div><a ui-sref="product-detail({id: homeCtrl.carouselProducts[3].id})">
+				  <img src="assets/images/25-carousel.jpg" class="img-responsive" alt="carousel2">
+			</a></div> 
 		</div>
 	</div>
 	<div class="col-md-12 col-sm-12 col-xs-12 home-section">
 		<div class="header-text fashion-week-text">Press, Fashion Week and some coffee</div>
-		<img src="assets/images/fashion-week-2.jpg" class="img-responsive" alt="Fashion-week">
+		<a href="blog.fashion.com" target=_blank><img src="assets/images/fashion-week-2.jpg" class="img-responsive" alt="Fashion-week"></a>
 		<div class="section-text fashion-section-text">
 			<p>
 				Expect a pretty but fun take on fashion trends. Welcome to our

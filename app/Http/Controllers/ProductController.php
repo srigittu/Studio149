@@ -144,9 +144,9 @@ class ProductController extends Controller
      * @param  int  $productIds
      * @return \Illuminate\Http\Response
      */
-    public function selectedProducts($productIds)
+    public function selectedProducts(Request $request)
     {
-        $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->whereIn('id', $productIds)->get();
+        $products = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->whereIn('id', $request->productIds)->get();
 
         if (!$product) {
             return response(array(
@@ -157,7 +157,7 @@ class ProductController extends Controller
 
         return response(array(
                 'status' => 'success',
-                'product' => $product
+                'products' => $products
                     ), 200);
     }
 

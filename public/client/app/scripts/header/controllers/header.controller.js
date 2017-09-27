@@ -16,6 +16,7 @@
      */
     function HeaderController($scope) {
         var vm = this;
+
         console.log('ccccccc---header')
     }
 

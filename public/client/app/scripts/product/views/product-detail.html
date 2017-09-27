@@ -6,20 +6,20 @@
         </div>
         <div class="col-md-6 col-sm-6 col-xs-12 product-images">
             <div class="col-md-9 col-sm-9 col-xs-12">
-                <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[0]}}" class="img-responsive">
+                <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[0]}}" class="img-responsive" data-toggle="modal" data-target="#imageModal">
             </div>
             <div class="col-md-3 col-sm-3 col-xs-12">
                 <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
-                     <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[1]}}" class="img-responsive"> 
+                     <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[1]}}" class="img-responsive" data-toggle="modal"  data-target="#imageModal"> 
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
-                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[2]}}" class="img-responsive">
+                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[2]}}" class="img-responsive" data-toggle="modal"  data-target="#imageModal">
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
-                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[3]}}" class="img-responsive"> 
+                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[3]}}" class="img-responsive" data-toggle="modal"  data-target="#imageModal"> 
                 </div>
                 <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
-                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[4]}}" class="img-responsive">
+                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[4]}}" class="img-responsive"  data-toggle="modal"  data-target="#imageModal">
                 </div>
             </div>
         </div>
@@ -39,9 +39,6 @@
                 </label>
             </div>
             <a class="size-guide" data-target="#sizeModal" data-toggle="modal">View Size Guide</a>
-            <div class="enquire">
-                <button ng-if="productCtrl.product.product_detail.price == '0.00' || productCtrl.product.status == '0'" type="=button" class="btn razorpay-payment-button" data-toggle="modal" data-target="#paymentModal">If interested please click here</button>
-            </div>
             <div class="color-material padding-bot">
                 <span>Color: {{productCtrl.product.product_detail.color}}</span>
                 <br>
@@ -52,14 +49,18 @@
                 <span>Designer: {{productCtrl.product.product_detail.designer}}</span>
             </div>
             <div class="enquire">
+                <button ng-if="productCtrl.product.product_detail.price == '0.00' || productCtrl.product.status == '0'" type="=button" class="btn razorpay-payment-button" data-toggle="modal" data-target="#paymentModal">If interested please click here</button>
                 <button ng-if="productCtrl.product.status == '1' && productCtrl.product.product_detail.price !== '0.00'" type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.openUserModal()">Buy Now</button>
             </div>
             <div class="product-description">
                 <p><span>Description :</span> {{productCtrl.product.product_detail.description}}
                 </p> 
             </div>
-            <div class="delivery-period padding-bot">
-                <span>Estimated Delivery :</span> 6 weeks
+            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price !== 0.00">
+                <span>Estimated Delivery :</span> 3-5 Working days
+            </div>
+            <div class="delivery-period padding-bot" ng-if="productCtrl.product.product_detail.price == 0.00">
+                <span>Estimated Delivery :</span> 6 Weeks
             </div>
             <hr>
             <div class="policy">
@@ -80,8 +81,18 @@
       </div>
       <div class="modal-body">
         <form>
+            <div class="row">
+                <div class="form-group col-xs-6">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" ng-model="productCtrl.vm.userBuyingDetails.firstname" required />
+                </div>
+                <div class="form-group col-xs-6">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" ng-model="productCtrl.vm.userBuyingDetails.lastname" required />
+                </div>
+            </div>
             <div class="form-group">
-                <label for="email">Email address:</label>
+                <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" ng-model="productCtrl.vm.userBuyingDetails.email" required />
             </div>
             <div class="form-group">
@@ -89,19 +100,11 @@
                 <input type="number" class="form-control" id="phone" name="phone" ng-model="productCtrl.vm.userBuyingDetails.phone" required />
             </div>
             <div class="form-group">
-                <label for="firstname">Firstname</label>
-                <input type="text" class="form-control" id="firstname" name="firstname" ng-model="productCtrl.vm.userBuyingDetails.firstname" required />
-            </div>
-            <div class="form-group">
-                <label for="lastname">Lastname</label>
-                <input type="text" class="form-control" id="lastname" name="lastname" ng-model="productCtrl.vm.userBuyingDetails.lastname" required />
-            </div>
-            <div class="form-group">
-                <label for="address1">Address</label>
+                <label for="address1">Address 1</label>
                 <input type="text" class="form-control" id="address1" name="address1" ng-model="productCtrl.vm.userBuyingDetails.address1" required />
             </div>
             <div class="form-group">
-                <label for="address2">Address</label>
+                <label for="address2">Address 2</label>
                 <input type="text" class="form-control" id="address2" name="address2" ng-model="productCtrl.vm.userBuyingDetails.address2" required />
             </div>
             <div class="form-group">
@@ -142,7 +145,7 @@
 </div> -->
 
 <div id="imageModal" class="modal fade" role="dialog">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
@@ -151,7 +154,7 @@
             <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[1]}}" class="img-responsive"> 
             <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[2]}}" class="img-responsive"> 
             <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[3]}}" class="img-responsive"> 
-            <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[4]}}" class="img-responsive">  
+            <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[4]}}" class="img-responsive">
         </div>
       </div>
     </div>
