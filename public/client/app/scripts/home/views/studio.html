@@ -20,7 +20,7 @@
     <div class="row studio-section1 designers">
         <div class="studio-header col-md-12 col-sm-12 col-xs-12">Meet your fashion mentor</div>
         <div class="col-md-12 col-sm-12 col-xs-12 designer-section">
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6 designer-names" ng-click="homeCtrl.openDesignerInfoModal('swathi')">
                 <img src="assets/images/swathi-circle.jpeg" class="img-responsive img-rounded" alt="Studio">
                 <div class="designer-name">
                     Swathi Purushothaman
@@ -28,7 +28,7 @@
                     Creative Director
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6 designer-names" ng-click="homeCtrl.openDesignerInfoModal('neena')">
                 <img src="assets/images/neena-circle.jpeg" class="img-responsive img-rounded" alt="Studio">
                 <div class="designer-name line-width">
                     Neena Reddy
@@ -36,7 +36,7 @@
                     Designer – Art &amp; Textiles
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6 designer-names" ng-click="homeCtrl.openDesignerInfoModal('jose')">
                 <img src="assets/images/jose-circle.jpeg" class="img-responsive img-rounded" alt="Studio">
                 <div class="designer-name line-width">
                     Sandra Jose
@@ -44,7 +44,7 @@
                     Designer – Sustainability and Conscious Fashion
                 </div>
             </div>
-            <div class="col-md-3 col-sm-3 col-xs-6">
+            <div class="col-md-3 col-sm-3 col-xs-6 designer-names" ng-click="homeCtrl.openDesignerInfoModal('vino')">
                 <img src="assets/images/vino-circle.jpeg" class="img-responsive img-rounded" alt="Studio">
                 <div class="designer-name line-width">
                     Vinodhini Surulinathan
@@ -93,4 +93,5 @@
     </div>
 </div>
 <div ng-include src="'../app/scripts/order/views/schedule-appointment.html'"></div>
+<div ng-include src="'../app/scripts/home/views/designer-info.html'"></div>
 <footer-section></footer-section>

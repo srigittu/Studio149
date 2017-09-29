@@ -23,8 +23,8 @@ class OrderController extends Controller
             'email' => $request->email,
             'self' => env('MAIL_FROM_ADDRESS'),
             'phone' => $request->phone,
-            'name' => $request->firstname,
-            'content' => $request->description,
+            'name' => $request->name,
+            'content' => $request->message,
             'subject' => $request->purpose,
             'site' => config('constants.site'),
         );
@@ -33,6 +33,7 @@ class OrderController extends Controller
                 $mail->to($data['self'])->subject($data['subject']);
             });
         } elseif ($request->purposeType == 2) {
+            $data['selected_size'] = $request->selectedSize;
             $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('id', $request->productId)->first();
             $data['product'] = $product;
             $sendMail = Mail::send('emails.enquiry_product', $data, function ($mail) use ($data) {
@@ -65,17 +66,20 @@ class OrderController extends Controller
         $razorPayOrder->order_id = $razorPayOrder->id.$request->product['id'];
         $razorPayOrder->product_id = $request->product['id'];
         $razorPayOrder->amount = $request->amount;
-        $razorPayOrder->name = $request->user['name'];
+        $razorPayOrder->name = $request->user['firstname'].' '.$request->user['lastname'];
         $razorPayOrder->email = $request->user['email'];
-        $razorPayOrder->address = $request->user['address1'].' '.$request->user['address2'];
+        $razorPayOrder->address = $request->user['address1'].' '.$request->user['address2'].' '.$request->user['pincode'];
         $razorPayOrder->razor_payment_id = $paymentId;
         $razorPayOrder->phone = $request->user['phone'];
-        $razorPayOrder->selected_size = $request->user['selected_size'];
+        $razorPayOrder->selected_size = $request->user['selectedSize'];
+        $razorPayOrder->save();
+        $product = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->where('id', $request->product['id'])->first();
         $data = array(
             'buyer' => $payment->email,
             'seller' => env('MAIL_FROM_ADDRESS'),
-            'product' => $request->product,
+            'product' => $product,
             'payment' => $payment,
+            'orderDetail' => $razorPayOrder,
             'subject' => 'Studio149 Fashion - Order',
             'site' => config('constants.site'),
         );

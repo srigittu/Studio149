@@ -534,6 +534,9 @@ a.category-title.btn.specials {
       border-top: 3px solid #A9A9A9;
     }
     padding: 4.5rem;
+    .designer-names {
+      cursor: pointer;
+    }
   }
   .designer-name {
     text-align: center;
@@ -648,7 +651,7 @@ a.category-title.btn.specials {
     }
     p.prod-desc {
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
       text-transform: capitalize;
       text-align: left;
     }
@@ -690,6 +693,7 @@ a.category-title.btn.specials {
       .product-title {
         font-weight: bold;
         font-size: 1.6rem;
+        text-transform: capitalize;
       }
       span {
         color: #3d3b41;
@@ -769,6 +773,9 @@ a.category-title.btn.specials {
     .padding-bot {
       padding-bottom: 1rem;
     }
+    .color-material.padding-bot {
+      padding-top: 1rem;
+    }
     margin: 0;
     padding-bottom: 5rem;
     button {
@@ -785,6 +792,27 @@ a.category-title.btn.specials {
     padding-top: 20rem;
     font-size: 5rem;
     color: #DAA520;
+}
+
+.blouse-section {
+  padding: 1.5rem;
+  cursor: default;
+  .blouses {
+    padding: 2rem;
+    box-shadow: 0px 3px 8px #646464;
+  }
+}
+
+.products-links {
+  padding-top: 4rem;
+  a.btn {
+    font-size: 1.8rem;
+    color: grey;
+    outline: none;
+    &:hover, &:focus {
+      color: #DAA520;
+    }
+  }
 }
 
 .hidden-section {
@@ -1147,8 +1175,20 @@ address{
   }
 }
 
+#designerModal {
+  .designer-desc {
+    font-size: 1.5rem;
+    padding-top: 2rem;
+    word-spacing: 1px;
+  }
+  .modal-title {
+    color: #DAA520;
+    text-align: center;
+  }
+}
+
 .press-outline {
-  margin-top: 120px;
+  margin-top: 130px;
   padding-bottom: 30px;
   .press-section {
     border: 1px solid #DAA520;
@@ -1168,6 +1208,24 @@ address{
         z-index: 1000;
       }
     }
+  }
+  .schedule-appointment {
+    text-align: center;
+    button {
+      padding: 1rem 2rem;
+      &:hover, &:focus {
+        outline: none;
+      }
+    }
+  }
+  .blouse-heading {
+    text-align: center;
+    font-size: 2rem;
+    font-style: italic;
+    padding: 3rem 24rem;
+  }
+  .press-section.gallery {
+    border: none;
   }
 }
 @media only screen and (min-width: 2000px) {

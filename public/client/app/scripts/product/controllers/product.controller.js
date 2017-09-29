@@ -103,12 +103,17 @@
             });
         }
 
-        vm.openUserModal = function() {
+        vm.openModal = function(modalType) {
           if(vm.selectedSize == '') {
             toastr.error('Please select a size');
             return;
           }
-          $('#userModal').modal('show');
+          if (modalType == 'user') {
+            $('#userModal').modal('show');
+          } else {
+            $('#paymentModal').modal('show');
+          }
+            
         }
 
         vm.getProductDetail = function(prodId) {
@@ -126,30 +131,14 @@
                     vm.product = response.data.product;
                     productImages = vm.product.product_detail.image.split(',');
                     vm.product.productImages = productImages;
-                    vm.product.status = 0;
                     console.log('Single Product-----', vm.product);
                     options.amount = vm.product.product_detail.price * 100;
-                    vm.status = response.data.status;
                 } else {
                     console.log('Sorry could not get product details');
                 }
             });
         }
 
-        // vm.showImage = function(event) {
-        //     var modalImage;
-        //     console.log('event image',event.target.src);
-        //     var imageUrl = cutFromString(fixedImageString, event.target.src);
-        //     console.log('imageUrl-----', imageUrl);
-        //     modalImage = document.getElementById('preview-image');
-        //     modalImage.src = imageUrl;
-        //     $('#imageModal').modal('show');
-        // }
-
-        // function cutFromString(oldStr, fullStr) {
-        //     return fullStr.split(oldStr).join('');
-        // }
-        
         vm.sendEnquiryDetails =function(userInfo) {
             userInfo.purpose = 'Interest On Product';
             userInfo.purposeType = 2;

@@ -105,6 +105,8 @@ class ProductController extends Controller
         $productDetail->designer = $request->designer;
         $productDetail->image = $productImages;
         $productDetail->price = $request->price;
+        $productDetail->type = $request->type;
+        $productDetail->code = $request->code;
         $product->productDetail()->save($productDetail);
         $productDetail->sizes()->sync($sizes);
 
@@ -148,7 +150,7 @@ class ProductController extends Controller
     {
         $products = Product::with('productDetail.category', 'productDetail.sizes', 'creator')->whereIn('id', $request->productIds)->get();
 
-        if (!$product) {
+        if (!$products) {
             return response(array(
                 'status' => 'success',
                 'message' => 'Product not found'
@@ -195,6 +197,8 @@ class ProductController extends Controller
         $productDetail->designer = $request->designer;
         $productDetail->image = $$productImages;
         $productDetail->price = $request->price;
+        $productDetail->type = $request->type;
+        $productDetail->code = $request->code;
         $productDetail->sizes()->sync($sizes);
         $productDetail->category()->save($category);
         $product->productDetail()->save($productDetail);

@@ -18,9 +18,6 @@
                 <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
                     <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[3]}}" class="img-responsive" data-toggle="modal"  data-target="#imageModal"> 
                 </div>
-                <div class="col-md-12 col-sm-12 col-xs-4 angle-images">
-                    <img src="assets/images/products/{{productCtrl.product.code}}/{{productCtrl.product.productImages[4]}}" class="img-responsive"  data-toggle="modal"  data-target="#imageModal">
-                </div>
             </div>
         </div>
         <div class="col-md-6 col-sm-6 col-xs-6 product-details">
@@ -40,6 +37,12 @@
             </div>
             <a class="size-guide" data-target="#sizeModal" data-toggle="modal">View Size Guide</a>
             <div class="color-material padding-bot">
+                <span>Code: {{productCtrl.product.product_detail.code}}</span>
+                <br>
+                <br>
+                <span>Category: {{productCtrl.product.product_detail.type}}</span>
+                <br>
+                <br>
                 <span>Color: {{productCtrl.product.product_detail.color}}</span>
                 <br>
                 <br>
@@ -49,8 +52,8 @@
                 <span>Designer: {{productCtrl.product.product_detail.designer}}</span>
             </div>
             <div class="enquire">
-                <button ng-if="productCtrl.product.product_detail.price == '0.00' || productCtrl.product.status == '0'" type="=button" class="btn razorpay-payment-button" data-toggle="modal" data-target="#paymentModal">If interested please click here</button>
-                <button ng-if="productCtrl.product.status == '1' && productCtrl.product.product_detail.price !== '0.00'" type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.openUserModal()">Buy Now</button>
+                <button ng-if="productCtrl.product.product_detail.price == '0.00' || productCtrl.product.status == '0'" type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.openModal('payment')">If interested please click here</button>
+                <button ng-if="productCtrl.product.status == '1' && productCtrl.product.product_detail.price !== '0.00'" type="=button" class="btn razorpay-payment-button" ng-click="productCtrl.openModal('user')">Buy Now</button>
             </div>
             <div class="product-description">
                 <p><span>Description :</span> {{productCtrl.product.product_detail.description}}

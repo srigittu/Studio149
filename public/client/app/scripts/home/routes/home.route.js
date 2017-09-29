@@ -61,6 +61,16 @@
 						url: '/blog',
 						templateUrl: '../app/scripts/home/views/blog.html',
 						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'blouses', {
+						url: '/blouses',
+						templateUrl: '../app/scripts/home/views/blouses.html',
+						controller: 'HomeController as homeCtrl'
+					} )
+					.state( 'custom', {
+						url: '/custom',
+						templateUrl: '../app/scripts/home/views/custom.html',
+						controller: 'HomeController as homeCtrl'
 					} );
 			}
 		]

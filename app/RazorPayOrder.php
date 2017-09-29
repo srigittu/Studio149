@@ -26,8 +26,8 @@ class RazorPayOrder extends Model
      * @var string
      */
     protected $primaryKey = 'id';
-
-	public function orderedProduct()
+    
+    public function orderedProduct()
     {
         return $this->hasOne('App\Product');
     }
